@@ -7,34 +7,35 @@ namespace godaddy {
 class CertificatesService final : public BaseService {
 public:
     explicit CertificatesService(ApiClient& client);
-    Result certificateCreate(const Value& certificateCreate, const Value& xMarketId = {});
-    Result certificateValidate(const Value& certificateCreate, const Value& xMarketId = {});
-    Result certificateGet(const Value& certificateId);
-    Result certificateActionRetrieve(const Value& certificateId);
-    Result certificateResendEmail(const Value& certificateId, const Value& emailId);
-    Result certificateAlternateEmailAddress(const Value& certificateId, const Value& emailAddress);
-    Result certificateResendEmailAddress(const Value& certificateId, const Value& emailId, const Value& emailAddress);
-    Result certificateEmailHistory(const Value& certificateId);
-    Result certificateCallbackDelete(const Value& certificateId);
-    Result certificateCallbackGet(const Value& certificateId);
-    Result certificateCallbackReplace(const Value& certificateId, const Value& callbackUrl);
-    Result certificateCancel(const Value& certificateId);
-    Result certificateDownload(const Value& certificateId);
-    Result certificateReissue(const Value& certificateId, const Value& reissueCreate);
-    Result certificateRenew(const Value& certificateId, const Value& renewCreate);
-    Result certificateRevoke(const Value& certificateId, const Value& certificateRevoke);
-    Result certificateSitesealGet(const Value& certificateId, const Value& theme = {}, const Value& locale = {});
-    Result certificateVerifydomaincontrol(const Value& certificateId);
-    Result certificateGetEntitlement(const Value& entitlementId, const Value& latest = {});
-    Result certificateCreateV2(const Value& subscriptionCertificateCreate, const Value& xMarketId = {});
-    Result certificateDownloadEntitlement(const Value& entitlementId);
-    Result getCustomerCertificatesByCustomerId(const Value& customerId, const Value& offset = {}, const Value& limit = {});
-    Result getCertificateDetailByCertIdentifier(const Value& customerId, const Value& certificateId);
-    Result getDomainInformationByCertificateId(const Value& customerId, const Value& certificateId);
-    Result getDomainDetailsByDomain(const Value& customerId, const Value& certificateId, const Value& domain);
+    Result create(const Value& create, const Value& xMarketId = {});
+    Result validate(const Value& create, const Value& xMarketId = {});
+    Result get(const Value& certificateId);
+    Result listActions(const Value& certificateId);
+    Result resendEmail(const Value& certificateId, const Value& emailId);
+    Result addAlternateEmailAddress(const Value& certificateId, const Value& emailAddress);
+    Result resendEmailToAddress(const Value& certificateId, const Value& emailId, const Value& emailAddress);
+    Result getEmailHistory(const Value& certificateId);
+    Result deleteCallback(const Value& certificateId);
+    Result getCallback(const Value& certificateId);
+    Result replaceCallback(const Value& certificateId, const Value& callbackUrl);
+    Result cancel(const Value& certificateId);
+    Result download(const Value& certificateId);
+    Result reissue(const Value& certificateId, const Value& reissueCreate);
+    Result renew(const Value& certificateId, const Value& renewCreate);
+    Result revoke(const Value& certificateId, const Value& revoke);
+    Result getSiteSeal(const Value& certificateId, const Value& theme = {}, const Value& locale = {});
+    Result verifyDomainControl(const Value& certificateId);
+    Result getByEntitlement(const Value& entitlementId, const Value& latest = {});
+    Result createForEntitlement(const Value& subscriptionCertificateCreate, const Value& xMarketId = {});
+    Result downloadByEntitlement(const Value& entitlementId);
+    Result listCustomerCertificates(const Value& customerId, const Value& offset = {}, const Value& limit = {});
+    Result getCustomerCertificate(const Value& customerId, const Value& certificateId);
+    Result listDomainVerifications(const Value& customerId, const Value& certificateId);
+    Result getDomainVerificationDetails(const Value& customerId, const Value& certificateId, const Value& domain);
     Result getAcmeExternalAccountBinding(const Value& customerId);
-    Result retrieveSslByDomainReseller(const Value& pageSize = {}, const Value& page = {}, const Value& domain = {}, const Value& status = {}, const Value& typeValue = {}, const Value& validation = {});
-    Result retrieveSslByDomainSubscriptionReseller(const Value& guid, const Value& pageSize = {}, const Value& page = {}, const Value& domain = {}, const Value& status = {}, const Value& typeValue = {}, const Value& validation = {});
+    Result searchSubscriptionsByDomain(const Value& pageSize = {}, const Value& page = {}, const Value& domain = {}, const Value& status = {}, const Value& typeValue = {}, const Value& validation = {});
+    Result listSubscriptionCertificates(const Value& guid, const Value& pageSize = {}, const Value& page = {}, const Value& domain = {}, const Value& status = {}, const Value& typeValue = {}, const Value& validation = {});
 };
 
 }  // namespace godaddy
+

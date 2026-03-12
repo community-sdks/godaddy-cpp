@@ -15,10 +15,22 @@ auto& service = client.agreements();
 Calls `GET /v1/agreements`.
 
 ```cpp
-auto response = client.agreements().get(std::vector<std::string>{"sample"}, std::string{"header-value"}, std::string{"header-value"});
+auto response = client.agreements().get(
+    std::vector<std::string>{"example.com"},
+    std::string{"123456"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "agreementKey": "DNRA",
+  "title": "Domain Name Registration Agreement",
+  "url": "https://www.godaddy.com/legal/agreements/domain-registration"
+}
 ```
+
+
+
+
 

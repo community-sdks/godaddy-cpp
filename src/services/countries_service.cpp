@@ -2,7 +2,7 @@
 
 namespace godaddy {
 
-CountriesService::CountriesService(ApiClient& client) : BaseService(client, "https://api.ote-godaddy.com") {}
+CountriesService::CountriesService(ApiClient& client) : BaseService(client, "countries") {}
 
 Result CountriesService::getCountries(const Value& marketId) {
     return call(

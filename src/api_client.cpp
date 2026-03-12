@@ -53,10 +53,27 @@ std::vector<QueryPair> ApiClient::build_query_pairs(const std::vector<Param>& va
     return pairs;
 }
 
-Result ApiClient::request(const std::string& method, const std::string& service_base_url, const std::string& path,
+std::string ApiClient::resolve_base_url(const std::string& service_name) const {
+    // Preserve backward compatibility for existing services that still pass absolute URLs.
+    if (service_name.rfind("http://", 0) == 0 || service_name.rfind("https://", 0) == 0) {
+        return service_name;
+    }
+    if (!service_name.empty()) {
+        const auto it = config_.service_base_urls.find(service_name);
+        if (it != config_.service_base_urls.end() && !it->second.empty()) {
+            return it->second;
+        }
+    }
+    if (!config_.base_url.empty()) {
+        return config_.base_url;
+    }
+    return kSandboxBaseUrl;
+}
+
+Result ApiClient::request(const std::string& method, const std::string& service_name, const std::string& path,
                           const std::vector<Param>& path_params, const std::vector<Param>& query_params,
                           const std::vector<Param>& headers, const Value& body) const {
-    std::string url = (config_.base_url.empty() ? service_base_url : config_.base_url);
+    std::string url = resolve_base_url(service_name);
     if (!url.empty() && url.back() == '/') url.pop_back();
     std::string resolved_path = path;
     for (const auto& pair : path_params) {

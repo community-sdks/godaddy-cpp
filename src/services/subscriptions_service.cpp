@@ -2,7 +2,7 @@
 
 namespace godaddy {
 
-SubscriptionsService::SubscriptionsService(ApiClient& client) : BaseService(client, "https://api.ote-godaddy.com") {}
+SubscriptionsService::SubscriptionsService(ApiClient& client) : BaseService(client, "subscriptions") {}
 
 Result SubscriptionsService::list(const Value& xAppKey, const Value& xShopperId, const Value& xMarketId, const Value& productGroupKeys, const Value& includes, const Value& offset, const Value& limit, const Value& sort) {
     return call(

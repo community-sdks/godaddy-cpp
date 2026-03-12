@@ -15,11 +15,29 @@ auto& service = client.abuse();
 Calls `GET /v1/abuse/tickets`.
 
 ```cpp
-auto response = client.abuse().getTickets(std::string{"sample"}, true, std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::int64_t{1}, std::int64_t{1});
+auto response = client.abuse().getTickets(
+    std::string{"example.com"},
+    true,
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::int64_t{1},
+    std::int64_t{1}
+);
 ```
 
 ```json
-{}
+{
+  "ticketIds": [
+    "TCK-100001"
+  ],
+  "pagination": {
+    "total": 1,
+    "start": 0,
+    "limit": 25
+  }
+}
 ```
 
 ### createTicket
@@ -27,11 +45,15 @@ auto response = client.abuse().getTickets(std::string{"sample"}, true, std::stri
 Calls `POST /v1/abuse/tickets`.
 
 ```cpp
-auto response = client.abuse().createTicket(std::string{"{\"sample\":true}"});
+auto response = client.abuse().createTicket(
+    std::string{R"({"domain":"example.com"})"}
+);
 ```
 
 ```json
-{}
+{
+  "ticketId": "TCK-100001"
+}
 ```
 
 ### getTicketInfo
@@ -39,11 +61,25 @@ auto response = client.abuse().createTicket(std::string{"{\"sample\":true}"});
 Calls `GET /v1/abuse/tickets/{ticketId}`.
 
 ```cpp
-auto response = client.abuse().getTicketInfo(std::string{"sample"});
+auto response = client.abuse().getTicketInfo(
+    std::string{"example.com"}
+);
 ```
 
 ```json
-{}
+{
+  "ticketId": "TCK-100001",
+  "type": "PHISHING",
+  "source": "203.0.113.10",
+  "target": "example.com",
+  "closed": false,
+  "notes": [
+    {
+      "message": "Initial report",
+      "createdAt": "2026-03-11T12:00:00Z"
+    }
+  ]
+}
 ```
 
 ### getTicketsV2
@@ -51,11 +87,29 @@ auto response = client.abuse().getTicketInfo(std::string{"sample"});
 Calls `GET /v2/abuse/tickets`.
 
 ```cpp
-auto response = client.abuse().getTicketsV2(std::string{"sample"}, true, std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::int64_t{1}, std::int64_t{1});
+auto response = client.abuse().getTicketsV2(
+    std::string{"example.com"},
+    true,
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::int64_t{1},
+    std::int64_t{1}
+);
 ```
 
 ```json
-{}
+{
+  "ticketIds": [
+    "TCK-100001"
+  ],
+  "pagination": {
+    "total": 1,
+    "start": 0,
+    "limit": 25
+  }
+}
 ```
 
 ### createTicketV2
@@ -63,11 +117,15 @@ auto response = client.abuse().getTicketsV2(std::string{"sample"}, true, std::st
 Calls `POST /v2/abuse/tickets`.
 
 ```cpp
-auto response = client.abuse().createTicketV2(std::string{"{\"sample\":true}"});
+auto response = client.abuse().createTicketV2(
+    std::string{R"({"domain":"example.com"})"}
+);
 ```
 
 ```json
-{}
+{
+  "ticketId": "TCK-100001"
+}
 ```
 
 ### getTicketInfoV2
@@ -75,10 +133,28 @@ auto response = client.abuse().createTicketV2(std::string{"{\"sample\":true}"});
 Calls `GET /v2/abuse/tickets/{ticketId}`.
 
 ```cpp
-auto response = client.abuse().getTicketInfoV2(std::string{"sample"});
+auto response = client.abuse().getTicketInfoV2(
+    std::string{"example.com"}
+);
 ```
 
 ```json
-{}
+{
+  "ticketId": "TCK-100001",
+  "type": "PHISHING",
+  "source": "203.0.113.10",
+  "target": "example.com",
+  "closed": false,
+  "notes": [
+    {
+      "message": "Initial report",
+      "createdAt": "2026-03-11T12:00:00Z"
+    }
+  ]
+}
 ```
+
+
+
+
 

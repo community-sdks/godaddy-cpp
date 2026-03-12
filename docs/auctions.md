@@ -15,10 +15,23 @@ auto& service = client.auctions();
 Calls `POST /v1/customers/{customerId}/aftermarket/listings/bids`.
 
 ```cpp
-auto response = client.auctions().placeBids(std::string{"sample"}, std::string{"{\"sample\":true}"});
+auto response = client.auctions().placeBids(
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"}
+);
 ```
 
 ```json
-{}
+{
+  "listingId": 200000,
+  "bidId": "bid_001",
+  "bidAmountUsd": 1500,
+  "status": "ACTIVE",
+  "isHighestBidder": true
+}
 ```
+
+
+
+
 

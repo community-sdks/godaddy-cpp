@@ -16,14 +16,38 @@ cmake --build build
 #include <iostream>
 
 int main() {
-    godaddy::Config config;
-    config.api_key = "your-api-key";
-    config.api_secret = "your-api-secret";
+    auto config = godaddy::sandbox_config("your-api-key", "your-api-secret");
 
     godaddy::Client client(config);
     auto response = client.domains().tlds();
     std::cout << response.as_string() << std::endl;
 }
+```
+
+## Configuration
+
+- `godaddy::sandbox_config(api_key, api_secret)` uses `https://api.ote-godaddy.com`
+- `godaddy::production_config(api_key, api_secret)` uses `https://api.godaddy.com`
+
+You can still construct `godaddy::Config` directly when you need full control.
+
+```cpp
+godaddy::Config config = godaddy::production_config("your-api-key", "your-api-secret");
+config.timeout = std::chrono::milliseconds{60000};
+config.max_retries = 3;
+config.default_headers["X-Custom-Header"] = "value";
+```
+
+## Service Base URL Overrides
+
+You can override base URLs per service using `service_base_urls`.
+
+```cpp
+godaddy::Config config = godaddy::sandbox_config("your-api-key", "your-api-secret");
+config.service_base_urls["domains"] = "https://api.godaddy.com";
+config.service_base_urls["certificates"] = "https://api.godaddy.com";
+
+godaddy::Client client(config);
 ```
 
 ## Services

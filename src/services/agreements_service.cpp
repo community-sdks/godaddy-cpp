@@ -2,7 +2,7 @@
 
 namespace godaddy {
 
-AgreementsService::AgreementsService(ApiClient& client) : BaseService(client, "https://api.ote-godaddy.com") {}
+AgreementsService::AgreementsService(ApiClient& client) : BaseService(client, "agreements") {}
 
 Result AgreementsService::get(const Value& keys, const Value& xPrivateLabelId, const Value& xMarketId) {
     return call(

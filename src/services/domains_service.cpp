@@ -2,7 +2,7 @@
 
 namespace godaddy {
 
-DomainsService::DomainsService(ApiClient& client) : BaseService(client, "https://api.ote-godaddy.com") {}
+DomainsService::DomainsService(ApiClient& client) : BaseService(client, "domains") {}
 
 Result DomainsService::list(const Value& xShopperId, const Value& statuses, const Value& statusGroups, const Value& limit, const Value& marker, const Value& includes, const Value& modifiedDate) {
     return call(
@@ -279,7 +279,7 @@ Result DomainsService::verifyEmail(const Value& domain, const Value& xShopperId)
     );
 }
 
-Result DomainsService::getV2CustomersCustomerIdDomainsDomain(const Value& customerId, const Value& domain, const Value& xRequestId, const Value& includes) {
+Result DomainsService::getCustomerDomain(const Value& customerId, const Value& domain, const Value& xRequestId, const Value& includes) {
     return call(
         "GET",
         "/v2/customers/{customerId}/domains/{domain}",
@@ -290,7 +290,7 @@ Result DomainsService::getV2CustomersCustomerIdDomainsDomain(const Value& custom
     );
 }
 
-Result DomainsService::deleteV2CustomersCustomerIdDomainsDomainChangeOfRegistrant(const Value& customerId, const Value& domain, const Value& xRequestId) {
+Result DomainsService::cancelCustomerDomainChangeOfRegistrant(const Value& customerId, const Value& domain, const Value& xRequestId) {
     return call(
         "DELETE",
         "/v2/customers/{customerId}/domains/{domain}/changeOfRegistrant",
@@ -301,7 +301,7 @@ Result DomainsService::deleteV2CustomersCustomerIdDomainsDomainChangeOfRegistran
     );
 }
 
-Result DomainsService::getV2CustomersCustomerIdDomainsDomainChangeOfRegistrant(const Value& customerId, const Value& domain, const Value& xRequestId) {
+Result DomainsService::getCustomerDomainChangeOfRegistrant(const Value& customerId, const Value& domain, const Value& xRequestId) {
     return call(
         "GET",
         "/v2/customers/{customerId}/domains/{domain}/changeOfRegistrant",
@@ -312,7 +312,7 @@ Result DomainsService::getV2CustomersCustomerIdDomainsDomainChangeOfRegistrant(c
     );
 }
 
-Result DomainsService::patchV2CustomersCustomerIdDomainsDomainDnssecRecords(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
+Result DomainsService::addCustomerDomainDnssecRecords(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
     return call(
         "PATCH",
         "/v2/customers/{customerId}/domains/{domain}/dnssecRecords",
@@ -323,7 +323,7 @@ Result DomainsService::patchV2CustomersCustomerIdDomainsDomainDnssecRecords(cons
     );
 }
 
-Result DomainsService::deleteV2CustomersCustomerIdDomainsDomainDnssecRecords(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
+Result DomainsService::removeCustomerDomainDnssecRecords(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
     return call(
         "DELETE",
         "/v2/customers/{customerId}/domains/{domain}/dnssecRecords",
@@ -334,7 +334,7 @@ Result DomainsService::deleteV2CustomersCustomerIdDomainsDomainDnssecRecords(con
     );
 }
 
-Result DomainsService::putV2CustomersCustomerIdDomainsDomainNameServers(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
+Result DomainsService::replaceCustomerDomainNameServers(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
     return call(
         "PUT",
         "/v2/customers/{customerId}/domains/{domain}/nameServers",
@@ -345,7 +345,7 @@ Result DomainsService::putV2CustomersCustomerIdDomainsDomainNameServers(const Va
     );
 }
 
-Result DomainsService::getV2CustomersCustomerIdDomainsDomainPrivacyForwarding(const Value& customerId, const Value& domain, const Value& xRequestId) {
+Result DomainsService::getCustomerDomainPrivacyForwarding(const Value& customerId, const Value& domain, const Value& xRequestId) {
     return call(
         "GET",
         "/v2/customers/{customerId}/domains/{domain}/privacy/forwarding",
@@ -356,7 +356,7 @@ Result DomainsService::getV2CustomersCustomerIdDomainsDomainPrivacyForwarding(co
     );
 }
 
-Result DomainsService::patchV2CustomersCustomerIdDomainsDomainPrivacyForwarding(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
+Result DomainsService::updateCustomerDomainPrivacyForwarding(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
     return call(
         "PATCH",
         "/v2/customers/{customerId}/domains/{domain}/privacy/forwarding",
@@ -367,7 +367,7 @@ Result DomainsService::patchV2CustomersCustomerIdDomainsDomainPrivacyForwarding(
     );
 }
 
-Result DomainsService::postV2CustomersCustomerIdDomainsDomainRedeem(const Value& customerId, const Value& domain, const Value& xRequestId, const Value& body) {
+Result DomainsService::redeemCustomerDomain(const Value& customerId, const Value& domain, const Value& xRequestId, const Value& body) {
     return call(
         "POST",
         "/v2/customers/{customerId}/domains/{domain}/redeem",
@@ -378,7 +378,7 @@ Result DomainsService::postV2CustomersCustomerIdDomainsDomainRedeem(const Value&
     );
 }
 
-Result DomainsService::postV2CustomersCustomerIdDomainsDomainRenew(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
+Result DomainsService::renewCustomerDomain(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
     return call(
         "POST",
         "/v2/customers/{customerId}/domains/{domain}/renew",
@@ -389,7 +389,7 @@ Result DomainsService::postV2CustomersCustomerIdDomainsDomainRenew(const Value& 
     );
 }
 
-Result DomainsService::postV2CustomersCustomerIdDomainsDomainTransfer(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
+Result DomainsService::transferCustomerDomain(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
     return call(
         "POST",
         "/v2/customers/{customerId}/domains/{domain}/transfer",
@@ -400,7 +400,7 @@ Result DomainsService::postV2CustomersCustomerIdDomainsDomainTransfer(const Valu
     );
 }
 
-Result DomainsService::getV2CustomersCustomerIdDomainsDomainTransfer(const Value& customerId, const Value& domain, const Value& xRequestId) {
+Result DomainsService::getCustomerDomainTransferStatus(const Value& customerId, const Value& domain, const Value& xRequestId) {
     return call(
         "GET",
         "/v2/customers/{customerId}/domains/{domain}/transfer",
@@ -411,7 +411,7 @@ Result DomainsService::getV2CustomersCustomerIdDomainsDomainTransfer(const Value
     );
 }
 
-Result DomainsService::postV2CustomersCustomerIdDomainsDomainTransferValidate(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
+Result DomainsService::validateCustomerDomainTransfer(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
     return call(
         "POST",
         "/v2/customers/{customerId}/domains/{domain}/transfer/validate",
@@ -422,7 +422,7 @@ Result DomainsService::postV2CustomersCustomerIdDomainsDomainTransferValidate(co
     );
 }
 
-Result DomainsService::postV2CustomersCustomerIdDomainsDomainTransferInAccept(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
+Result DomainsService::acceptCustomerDomainTransferIn(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
     return call(
         "POST",
         "/v2/customers/{customerId}/domains/{domain}/transferInAccept",
@@ -433,7 +433,7 @@ Result DomainsService::postV2CustomersCustomerIdDomainsDomainTransferInAccept(co
     );
 }
 
-Result DomainsService::postV2CustomersCustomerIdDomainsDomainTransferInCancel(const Value& customerId, const Value& domain, const Value& xRequestId) {
+Result DomainsService::cancelCustomerDomainTransferIn(const Value& customerId, const Value& domain, const Value& xRequestId) {
     return call(
         "POST",
         "/v2/customers/{customerId}/domains/{domain}/transferInCancel",
@@ -444,7 +444,7 @@ Result DomainsService::postV2CustomersCustomerIdDomainsDomainTransferInCancel(co
     );
 }
 
-Result DomainsService::postV2CustomersCustomerIdDomainsDomainTransferInRestart(const Value& customerId, const Value& domain, const Value& xRequestId) {
+Result DomainsService::restartCustomerDomainTransferIn(const Value& customerId, const Value& domain, const Value& xRequestId) {
     return call(
         "POST",
         "/v2/customers/{customerId}/domains/{domain}/transferInRestart",
@@ -455,7 +455,7 @@ Result DomainsService::postV2CustomersCustomerIdDomainsDomainTransferInRestart(c
     );
 }
 
-Result DomainsService::postV2CustomersCustomerIdDomainsDomainTransferInRetry(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
+Result DomainsService::retryCustomerDomainTransferIn(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
     return call(
         "POST",
         "/v2/customers/{customerId}/domains/{domain}/transferInRetry",
@@ -466,7 +466,7 @@ Result DomainsService::postV2CustomersCustomerIdDomainsDomainTransferInRetry(con
     );
 }
 
-Result DomainsService::postV2CustomersCustomerIdDomainsDomainTransferOut(const Value& customerId, const Value& domain, const Value& registrar, const Value& xRequestId) {
+Result DomainsService::initiateCustomerDomainTransferOut(const Value& customerId, const Value& domain, const Value& registrar, const Value& xRequestId) {
     return call(
         "POST",
         "/v2/customers/{customerId}/domains/{domain}/transferOut",
@@ -477,7 +477,7 @@ Result DomainsService::postV2CustomersCustomerIdDomainsDomainTransferOut(const V
     );
 }
 
-Result DomainsService::postV2CustomersCustomerIdDomainsDomainTransferOutAccept(const Value& customerId, const Value& domain, const Value& xRequestId) {
+Result DomainsService::acceptCustomerDomainTransferOut(const Value& customerId, const Value& domain, const Value& xRequestId) {
     return call(
         "POST",
         "/v2/customers/{customerId}/domains/{domain}/transferOutAccept",
@@ -488,7 +488,7 @@ Result DomainsService::postV2CustomersCustomerIdDomainsDomainTransferOutAccept(c
     );
 }
 
-Result DomainsService::postV2CustomersCustomerIdDomainsDomainTransferOutReject(const Value& customerId, const Value& domain, const Value& xRequestId, const Value& reason) {
+Result DomainsService::rejectCustomerDomainTransferOut(const Value& customerId, const Value& domain, const Value& xRequestId, const Value& reason) {
     return call(
         "POST",
         "/v2/customers/{customerId}/domains/{domain}/transferOutReject",
@@ -499,7 +499,7 @@ Result DomainsService::postV2CustomersCustomerIdDomainsDomainTransferOutReject(c
     );
 }
 
-Result DomainsService::domainsForwardsDelete(const Value& customerId, const Value& fqdn) {
+Result DomainsService::deleteDomainForwarding(const Value& customerId, const Value& fqdn) {
     return call(
         "DELETE",
         "/v2/customers/{customerId}/domains/forwards/{fqdn}",
@@ -510,7 +510,7 @@ Result DomainsService::domainsForwardsDelete(const Value& customerId, const Valu
     );
 }
 
-Result DomainsService::domainsForwardsGet(const Value& customerId, const Value& fqdn, const Value& includeSubs) {
+Result DomainsService::getDomainForwarding(const Value& customerId, const Value& fqdn, const Value& includeSubs) {
     return call(
         "GET",
         "/v2/customers/{customerId}/domains/forwards/{fqdn}",
@@ -521,7 +521,7 @@ Result DomainsService::domainsForwardsGet(const Value& customerId, const Value& 
     );
 }
 
-Result DomainsService::domainsForwardsPut(const Value& customerId, const Value& fqdn, const Value& body) {
+Result DomainsService::updateDomainForwarding(const Value& customerId, const Value& fqdn, const Value& body) {
     return call(
         "PUT",
         "/v2/customers/{customerId}/domains/forwards/{fqdn}",
@@ -532,7 +532,7 @@ Result DomainsService::domainsForwardsPut(const Value& customerId, const Value& 
     );
 }
 
-Result DomainsService::domainsForwardsPost(const Value& customerId, const Value& fqdn, const Value& body) {
+Result DomainsService::createDomainForwarding(const Value& customerId, const Value& fqdn, const Value& body) {
     return call(
         "POST",
         "/v2/customers/{customerId}/domains/forwards/{fqdn}",
@@ -543,7 +543,7 @@ Result DomainsService::domainsForwardsPost(const Value& customerId, const Value&
     );
 }
 
-Result DomainsService::getV2CustomersCustomerIdDomainsDomainActions(const Value& customerId, const Value& domain, const Value& xRequestId) {
+Result DomainsService::listCustomerDomainActions(const Value& customerId, const Value& domain, const Value& xRequestId) {
     return call(
         "GET",
         "/v2/customers/{customerId}/domains/{domain}/actions",
@@ -554,7 +554,7 @@ Result DomainsService::getV2CustomersCustomerIdDomainsDomainActions(const Value&
     );
 }
 
-Result DomainsService::deleteV2CustomersCustomerIdDomainsDomainActionsType(const Value& customerId, const Value& domain, const Value& typeValue, const Value& xRequestId) {
+Result DomainsService::cancelCustomerDomainAction(const Value& customerId, const Value& domain, const Value& typeValue, const Value& xRequestId) {
     return call(
         "DELETE",
         "/v2/customers/{customerId}/domains/{domain}/actions/{type}",
@@ -565,7 +565,7 @@ Result DomainsService::deleteV2CustomersCustomerIdDomainsDomainActionsType(const
     );
 }
 
-Result DomainsService::getV2CustomersCustomerIdDomainsDomainActionsType(const Value& customerId, const Value& domain, const Value& typeValue, const Value& xRequestId) {
+Result DomainsService::getCustomerDomainAction(const Value& customerId, const Value& domain, const Value& typeValue, const Value& xRequestId) {
     return call(
         "GET",
         "/v2/customers/{customerId}/domains/{domain}/actions/{type}",
@@ -576,7 +576,7 @@ Result DomainsService::getV2CustomersCustomerIdDomainsDomainActionsType(const Va
     );
 }
 
-Result DomainsService::getV2CustomersCustomerIdDomainsNotifications(const Value& customerId, const Value& xRequestId) {
+Result DomainsService::getCustomerDomainNotifications(const Value& customerId, const Value& xRequestId) {
     return call(
         "GET",
         "/v2/customers/{customerId}/domains/notifications",
@@ -587,7 +587,7 @@ Result DomainsService::getV2CustomersCustomerIdDomainsNotifications(const Value&
     );
 }
 
-Result DomainsService::getV2CustomersCustomerIdDomainsNotificationsOptIn(const Value& customerId, const Value& xRequestId) {
+Result DomainsService::getCustomerDomainNotificationOptIns(const Value& customerId, const Value& xRequestId) {
     return call(
         "GET",
         "/v2/customers/{customerId}/domains/notifications/optIn",
@@ -598,7 +598,7 @@ Result DomainsService::getV2CustomersCustomerIdDomainsNotificationsOptIn(const V
     );
 }
 
-Result DomainsService::putV2CustomersCustomerIdDomainsNotificationsOptIn(const Value& customerId, const Value& types, const Value& xRequestId) {
+Result DomainsService::updateCustomerDomainNotificationOptIns(const Value& customerId, const Value& types, const Value& xRequestId) {
     return call(
         "PUT",
         "/v2/customers/{customerId}/domains/notifications/optIn",
@@ -609,7 +609,7 @@ Result DomainsService::putV2CustomersCustomerIdDomainsNotificationsOptIn(const V
     );
 }
 
-Result DomainsService::getV2CustomersCustomerIdDomainsNotificationsSchemasType(const Value& customerId, const Value& typeValue, const Value& xRequestId) {
+Result DomainsService::getCustomerDomainNotificationSchema(const Value& customerId, const Value& typeValue, const Value& xRequestId) {
     return call(
         "GET",
         "/v2/customers/{customerId}/domains/notifications/schemas/{type}",
@@ -620,7 +620,7 @@ Result DomainsService::getV2CustomersCustomerIdDomainsNotificationsSchemasType(c
     );
 }
 
-Result DomainsService::postV2CustomersCustomerIdDomainsNotificationsNotificationIdAcknowledge(const Value& customerId, const Value& notificationId, const Value& xRequestId) {
+Result DomainsService::acknowledgeCustomerDomainNotification(const Value& customerId, const Value& notificationId, const Value& xRequestId) {
     return call(
         "POST",
         "/v2/customers/{customerId}/domains/notifications/{notificationId}/acknowledge",
@@ -631,7 +631,7 @@ Result DomainsService::postV2CustomersCustomerIdDomainsNotificationsNotification
     );
 }
 
-Result DomainsService::postV2CustomersCustomerIdDomainsRegister(const Value& customerId, const Value& body, const Value& xRequestId) {
+Result DomainsService::registerCustomerDomain(const Value& customerId, const Value& body, const Value& xRequestId) {
     return call(
         "POST",
         "/v2/customers/{customerId}/domains/register",
@@ -642,7 +642,7 @@ Result DomainsService::postV2CustomersCustomerIdDomainsRegister(const Value& cus
     );
 }
 
-Result DomainsService::getV2CustomersCustomerIdDomainsRegisterSchemaTld(const Value& customerId, const Value& tld, const Value& xRequestId) {
+Result DomainsService::getCustomerDomainRegisterSchema(const Value& customerId, const Value& tld, const Value& xRequestId) {
     return call(
         "GET",
         "/v2/customers/{customerId}/domains/register/schema/{tld}",
@@ -653,7 +653,7 @@ Result DomainsService::getV2CustomersCustomerIdDomainsRegisterSchemaTld(const Va
     );
 }
 
-Result DomainsService::postV2CustomersCustomerIdDomainsRegisterValidate(const Value& customerId, const Value& body, const Value& xRequestId) {
+Result DomainsService::validateCustomerDomainRegister(const Value& customerId, const Value& body, const Value& xRequestId) {
     return call(
         "POST",
         "/v2/customers/{customerId}/domains/register/validate",
@@ -664,7 +664,7 @@ Result DomainsService::postV2CustomersCustomerIdDomainsRegisterValidate(const Va
     );
 }
 
-Result DomainsService::getV2DomainsMaintenances(const Value& xRequestId, const Value& status, const Value& modifiedAtAfter, const Value& startsAtAfter, const Value& limit) {
+Result DomainsService::listDomainMaintenances(const Value& xRequestId, const Value& status, const Value& modifiedAtAfter, const Value& startsAtAfter, const Value& limit) {
     return call(
         "GET",
         "/v2/domains/maintenances",
@@ -675,7 +675,7 @@ Result DomainsService::getV2DomainsMaintenances(const Value& xRequestId, const V
     );
 }
 
-Result DomainsService::getV2DomainsMaintenancesMaintenanceId(const Value& maintenanceId, const Value& xRequestId) {
+Result DomainsService::getDomainMaintenance(const Value& maintenanceId, const Value& xRequestId) {
     return call(
         "GET",
         "/v2/domains/maintenances/{maintenanceId}",
@@ -686,7 +686,7 @@ Result DomainsService::getV2DomainsMaintenancesMaintenanceId(const Value& mainte
     );
 }
 
-Result DomainsService::getV2DomainsUsageYyyymm(const Value& yyyymm, const Value& xRequestId, const Value& includes) {
+Result DomainsService::getDomainUsage(const Value& yyyymm, const Value& xRequestId, const Value& includes) {
     return call(
         "GET",
         "/v2/domains/usage/{yyyymm}",
@@ -697,7 +697,7 @@ Result DomainsService::getV2DomainsUsageYyyymm(const Value& yyyymm, const Value&
     );
 }
 
-Result DomainsService::patchV2CustomersCustomerIdDomainsDomainContacts(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
+Result DomainsService::updateCustomerDomainContacts(const Value& customerId, const Value& domain, const Value& body, const Value& xRequestId) {
     return call(
         "PATCH",
         "/v2/customers/{customerId}/domains/{domain}/contacts",
@@ -708,7 +708,7 @@ Result DomainsService::patchV2CustomersCustomerIdDomainsDomainContacts(const Val
     );
 }
 
-Result DomainsService::postV2CustomersCustomerIdDomainsDomainRegenerateAuthCode(const Value& customerId, const Value& domain, const Value& xRequestId) {
+Result DomainsService::regenerateCustomerDomainAuthCode(const Value& customerId, const Value& domain, const Value& xRequestId) {
     return call(
         "POST",
         "/v2/customers/{customerId}/domains/{domain}/regenerateAuthCode",
@@ -720,3 +720,4 @@ Result DomainsService::postV2CustomersCustomerIdDomainsDomainRegenerateAuthCode(
 }
 
 }  // namespace godaddy
+

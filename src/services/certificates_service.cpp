@@ -2,31 +2,31 @@
 
 namespace godaddy {
 
-CertificatesService::CertificatesService(ApiClient& client) : BaseService(client, "https://api.ote-godaddy.com") {}
+CertificatesService::CertificatesService(ApiClient& client) : BaseService(client, "certificates") {}
 
-Result CertificatesService::certificateCreate(const Value& certificateCreate, const Value& xMarketId) {
+Result CertificatesService::create(const Value& create, const Value& xMarketId) {
     return call(
         "POST",
         "/v1/certificates",
         {},
         {},
         {{"X-Market-Id", xMarketId}},
-        certificateCreate
+        create
     );
 }
 
-Result CertificatesService::certificateValidate(const Value& certificateCreate, const Value& xMarketId) {
+Result CertificatesService::validate(const Value& create, const Value& xMarketId) {
     return call(
         "POST",
         "/v1/certificates/validate",
         {},
         {},
         {{"X-Market-Id", xMarketId}},
-        certificateCreate
+        create
     );
 }
 
-Result CertificatesService::certificateGet(const Value& certificateId) {
+Result CertificatesService::get(const Value& certificateId) {
     return call(
         "GET",
         "/v1/certificates/{certificateId}",
@@ -37,7 +37,7 @@ Result CertificatesService::certificateGet(const Value& certificateId) {
     );
 }
 
-Result CertificatesService::certificateActionRetrieve(const Value& certificateId) {
+Result CertificatesService::listActions(const Value& certificateId) {
     return call(
         "GET",
         "/v1/certificates/{certificateId}/actions",
@@ -48,7 +48,7 @@ Result CertificatesService::certificateActionRetrieve(const Value& certificateId
     );
 }
 
-Result CertificatesService::certificateResendEmail(const Value& certificateId, const Value& emailId) {
+Result CertificatesService::resendEmail(const Value& certificateId, const Value& emailId) {
     return call(
         "POST",
         "/v1/certificates/{certificateId}/email/{emailId}/resend",
@@ -59,7 +59,7 @@ Result CertificatesService::certificateResendEmail(const Value& certificateId, c
     );
 }
 
-Result CertificatesService::certificateAlternateEmailAddress(const Value& certificateId, const Value& emailAddress) {
+Result CertificatesService::addAlternateEmailAddress(const Value& certificateId, const Value& emailAddress) {
     return call(
         "POST",
         "/v1/certificates/{certificateId}/email/resend/{emailAddress}",
@@ -70,7 +70,7 @@ Result CertificatesService::certificateAlternateEmailAddress(const Value& certif
     );
 }
 
-Result CertificatesService::certificateResendEmailAddress(const Value& certificateId, const Value& emailId, const Value& emailAddress) {
+Result CertificatesService::resendEmailToAddress(const Value& certificateId, const Value& emailId, const Value& emailAddress) {
     return call(
         "POST",
         "/v1/certificates/{certificateId}/email/{emailId}/resend/{emailAddress}",
@@ -81,7 +81,7 @@ Result CertificatesService::certificateResendEmailAddress(const Value& certifica
     );
 }
 
-Result CertificatesService::certificateEmailHistory(const Value& certificateId) {
+Result CertificatesService::getEmailHistory(const Value& certificateId) {
     return call(
         "GET",
         "/v1/certificates/{certificateId}/email/history",
@@ -92,7 +92,7 @@ Result CertificatesService::certificateEmailHistory(const Value& certificateId) 
     );
 }
 
-Result CertificatesService::certificateCallbackDelete(const Value& certificateId) {
+Result CertificatesService::deleteCallback(const Value& certificateId) {
     return call(
         "DELETE",
         "/v1/certificates/{certificateId}/callback",
@@ -103,7 +103,7 @@ Result CertificatesService::certificateCallbackDelete(const Value& certificateId
     );
 }
 
-Result CertificatesService::certificateCallbackGet(const Value& certificateId) {
+Result CertificatesService::getCallback(const Value& certificateId) {
     return call(
         "GET",
         "/v1/certificates/{certificateId}/callback",
@@ -114,7 +114,7 @@ Result CertificatesService::certificateCallbackGet(const Value& certificateId) {
     );
 }
 
-Result CertificatesService::certificateCallbackReplace(const Value& certificateId, const Value& callbackUrl) {
+Result CertificatesService::replaceCallback(const Value& certificateId, const Value& callbackUrl) {
     return call(
         "PUT",
         "/v1/certificates/{certificateId}/callback",
@@ -125,7 +125,7 @@ Result CertificatesService::certificateCallbackReplace(const Value& certificateI
     );
 }
 
-Result CertificatesService::certificateCancel(const Value& certificateId) {
+Result CertificatesService::cancel(const Value& certificateId) {
     return call(
         "POST",
         "/v1/certificates/{certificateId}/cancel",
@@ -136,7 +136,7 @@ Result CertificatesService::certificateCancel(const Value& certificateId) {
     );
 }
 
-Result CertificatesService::certificateDownload(const Value& certificateId) {
+Result CertificatesService::download(const Value& certificateId) {
     return call(
         "GET",
         "/v1/certificates/{certificateId}/download",
@@ -147,7 +147,7 @@ Result CertificatesService::certificateDownload(const Value& certificateId) {
     );
 }
 
-Result CertificatesService::certificateReissue(const Value& certificateId, const Value& reissueCreate) {
+Result CertificatesService::reissue(const Value& certificateId, const Value& reissueCreate) {
     return call(
         "POST",
         "/v1/certificates/{certificateId}/reissue",
@@ -158,7 +158,7 @@ Result CertificatesService::certificateReissue(const Value& certificateId, const
     );
 }
 
-Result CertificatesService::certificateRenew(const Value& certificateId, const Value& renewCreate) {
+Result CertificatesService::renew(const Value& certificateId, const Value& renewCreate) {
     return call(
         "POST",
         "/v1/certificates/{certificateId}/renew",
@@ -169,18 +169,18 @@ Result CertificatesService::certificateRenew(const Value& certificateId, const V
     );
 }
 
-Result CertificatesService::certificateRevoke(const Value& certificateId, const Value& certificateRevoke) {
+Result CertificatesService::revoke(const Value& certificateId, const Value& revoke) {
     return call(
         "POST",
         "/v1/certificates/{certificateId}/revoke",
         {{"certificateId", certificateId}},
         {},
         {},
-        certificateRevoke
+        revoke
     );
 }
 
-Result CertificatesService::certificateSitesealGet(const Value& certificateId, const Value& theme, const Value& locale) {
+Result CertificatesService::getSiteSeal(const Value& certificateId, const Value& theme, const Value& locale) {
     return call(
         "GET",
         "/v1/certificates/{certificateId}/siteSeal",
@@ -191,7 +191,7 @@ Result CertificatesService::certificateSitesealGet(const Value& certificateId, c
     );
 }
 
-Result CertificatesService::certificateVerifydomaincontrol(const Value& certificateId) {
+Result CertificatesService::verifyDomainControl(const Value& certificateId) {
     return call(
         "POST",
         "/v1/certificates/{certificateId}/verifyDomainControl",
@@ -202,7 +202,7 @@ Result CertificatesService::certificateVerifydomaincontrol(const Value& certific
     );
 }
 
-Result CertificatesService::certificateGetEntitlement(const Value& entitlementId, const Value& latest) {
+Result CertificatesService::getByEntitlement(const Value& entitlementId, const Value& latest) {
     return call(
         "GET",
         "/v2/certificates",
@@ -213,7 +213,7 @@ Result CertificatesService::certificateGetEntitlement(const Value& entitlementId
     );
 }
 
-Result CertificatesService::certificateCreateV2(const Value& subscriptionCertificateCreate, const Value& xMarketId) {
+Result CertificatesService::createForEntitlement(const Value& subscriptionCertificateCreate, const Value& xMarketId) {
     return call(
         "POST",
         "/v2/certificates",
@@ -224,7 +224,7 @@ Result CertificatesService::certificateCreateV2(const Value& subscriptionCertifi
     );
 }
 
-Result CertificatesService::certificateDownloadEntitlement(const Value& entitlementId) {
+Result CertificatesService::downloadByEntitlement(const Value& entitlementId) {
     return call(
         "GET",
         "/v2/certificates/download",
@@ -235,7 +235,7 @@ Result CertificatesService::certificateDownloadEntitlement(const Value& entitlem
     );
 }
 
-Result CertificatesService::getCustomerCertificatesByCustomerId(const Value& customerId, const Value& offset, const Value& limit) {
+Result CertificatesService::listCustomerCertificates(const Value& customerId, const Value& offset, const Value& limit) {
     return call(
         "GET",
         "/v2/customers/{customerId}/certificates",
@@ -246,7 +246,7 @@ Result CertificatesService::getCustomerCertificatesByCustomerId(const Value& cus
     );
 }
 
-Result CertificatesService::getCertificateDetailByCertIdentifier(const Value& customerId, const Value& certificateId) {
+Result CertificatesService::getCustomerCertificate(const Value& customerId, const Value& certificateId) {
     return call(
         "GET",
         "/v2/customers/{customerId}/certificates/{certificateId}",
@@ -257,7 +257,7 @@ Result CertificatesService::getCertificateDetailByCertIdentifier(const Value& cu
     );
 }
 
-Result CertificatesService::getDomainInformationByCertificateId(const Value& customerId, const Value& certificateId) {
+Result CertificatesService::listDomainVerifications(const Value& customerId, const Value& certificateId) {
     return call(
         "GET",
         "/v2/customers/{customerId}/certificates/{certificateId}/domainVerifications",
@@ -268,7 +268,7 @@ Result CertificatesService::getDomainInformationByCertificateId(const Value& cus
     );
 }
 
-Result CertificatesService::getDomainDetailsByDomain(const Value& customerId, const Value& certificateId, const Value& domain) {
+Result CertificatesService::getDomainVerificationDetails(const Value& customerId, const Value& certificateId, const Value& domain) {
     return call(
         "GET",
         "/v2/customers/{customerId}/certificates/{certificateId}/domainVerifications/{domain}",
@@ -290,7 +290,7 @@ Result CertificatesService::getAcmeExternalAccountBinding(const Value& customerI
     );
 }
 
-Result CertificatesService::retrieveSslByDomainReseller(const Value& pageSize, const Value& page, const Value& domain, const Value& status, const Value& typeValue, const Value& validation) {
+Result CertificatesService::searchSubscriptionsByDomain(const Value& pageSize, const Value& page, const Value& domain, const Value& status, const Value& typeValue, const Value& validation) {
     return call(
         "GET",
         "/v2/certificates/subscriptions/search",
@@ -301,7 +301,7 @@ Result CertificatesService::retrieveSslByDomainReseller(const Value& pageSize, c
     );
 }
 
-Result CertificatesService::retrieveSslByDomainSubscriptionReseller(const Value& guid, const Value& pageSize, const Value& page, const Value& domain, const Value& status, const Value& typeValue, const Value& validation) {
+Result CertificatesService::listSubscriptionCertificates(const Value& guid, const Value& pageSize, const Value& page, const Value& domain, const Value& status, const Value& typeValue, const Value& validation) {
     return call(
         "GET",
         "/v2/certificates/subscription/{guid}",
@@ -313,3 +313,4 @@ Result CertificatesService::retrieveSslByDomainSubscriptionReseller(const Value&
 }
 
 }  // namespace godaddy
+

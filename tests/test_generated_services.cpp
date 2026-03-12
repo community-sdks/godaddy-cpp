@@ -43,7 +43,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.abuse().createTicket(std::string{"{\"sample\":true}"});
+        client.abuse().createTicket(std::string{"123456"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -73,7 +73,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.abuse().createTicketV2(std::string{"{\"sample\":true}"});
+        client.abuse().createTicketV2(std::string{"123456"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -133,7 +133,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.ans().searchAnsName(std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::int64_t{1}, std::int64_t{1});
+        client.ans().search(std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::int64_t{1}, std::int64_t{1});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -143,7 +143,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.ans().registerAgent(std::string{"{\"sample\":true}"});
+        client.ans().registerAgent(std::string{"123456"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -153,7 +153,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.ans().resolveAnsName(std::string{"{\"sample\":true}"});
+        client.ans().resolve(std::string{"123456"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -163,7 +163,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.ans().getAgent(std::string{"sample"});
+        client.ans().get(std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -173,7 +173,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.ans().validateRegistration(std::string{"sample"});
+        client.ans().verifyAcme(std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -183,7 +183,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.ans().verifyDnsRecords(std::string{"sample"});
+        client.ans().verifyDns(std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -193,7 +193,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.ans().getAgentIdentityCertificateByAgentId(std::string{"sample"});
+        client.ans().getIdentityCertificates(std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -203,7 +203,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.ans().submitAgentIdentityCsrByAgentId(std::string{"sample"}, std::string{"{\"sample\":true}"});
+        client.ans().submitIdentityCsr(std::string{"sample"}, std::string{"123456"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -213,7 +213,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.ans().getAgentServerCertificateByAgentId(std::string{"sample"});
+        client.ans().getServerCertificates(std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -223,7 +223,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.ans().submitAgentServerCsrByAgentId(std::string{"sample"}, std::string{"{\"sample\":true}"});
+        client.ans().submitServerCsr(std::string{"sample"}, std::string{"123456"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -233,7 +233,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.ans().getAgentCsrStatusByAgentId(std::string{"sample"}, std::string{"sample"});
+        client.ans().getCsrStatus(std::string{"sample"}, std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -243,7 +243,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.ans().getAgentEvents(std::string{"header-value"}, std::string{"sample"}, std::string{"sample"}, std::int64_t{1});
+        client.ans().events(std::string{"header-value"}, std::string{"sample"}, std::string{"sample"}, std::int64_t{1});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -253,7 +253,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.auctions().placeBids(std::string{"sample"}, std::string{"{\"sample\":true}"});
+        client.auctions().placeBids(std::string{"sample"}, std::string{"123456"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -263,7 +263,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateCreate(std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.certificates().create(std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -273,7 +273,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateValidate(std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.certificates().validate(std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -283,7 +283,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateGet(std::string{"sample"});
+        client.certificates().get(std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -293,7 +293,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateActionRetrieve(std::string{"sample"});
+        client.certificates().listActions(std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -303,7 +303,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateResendEmail(std::string{"sample"}, std::string{"sample"});
+        client.certificates().resendEmail(std::string{"sample"}, std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -313,7 +313,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateAlternateEmailAddress(std::string{"sample"}, std::vector<std::string>{"sample"});
+        client.certificates().addAlternateEmailAddress(std::string{"sample"}, std::vector<std::string>{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -323,7 +323,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateResendEmailAddress(std::string{"sample"}, std::string{"sample"}, std::vector<std::string>{"sample"});
+        client.certificates().resendEmailToAddress(std::string{"sample"}, std::string{"sample"}, std::vector<std::string>{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -333,7 +333,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateEmailHistory(std::string{"sample"});
+        client.certificates().getEmailHistory(std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -343,7 +343,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateCallbackDelete(std::string{"sample"});
+        client.certificates().deleteCallback(std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "DELETE");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -353,7 +353,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateCallbackGet(std::string{"sample"});
+        client.certificates().getCallback(std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -363,7 +363,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateCallbackReplace(std::string{"sample"}, std::string{"sample"});
+        client.certificates().replaceCallback(std::string{"sample"}, std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "PUT");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -373,7 +373,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateCancel(std::string{"sample"});
+        client.certificates().cancel(std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -383,7 +383,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateDownload(std::string{"sample"});
+        client.certificates().download(std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -393,7 +393,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateReissue(std::string{"sample"}, std::string{"{\"sample\":true}"});
+        client.certificates().reissue(std::string{"sample"}, std::string{"123456"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -403,7 +403,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateRenew(std::string{"sample"}, std::string{"{\"sample\":true}"});
+        client.certificates().renew(std::string{"sample"}, std::string{"123456"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -413,7 +413,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateRevoke(std::string{"sample"}, std::string{"{\"sample\":true}"});
+        client.certificates().revoke(std::string{"sample"}, std::string{"123456"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -423,7 +423,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateSitesealGet(std::string{"sample"}, std::string{"sample"}, std::string{"sample"});
+        client.certificates().getSiteSeal(std::string{"sample"}, std::string{"sample"}, std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -433,7 +433,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateVerifydomaincontrol(std::string{"sample"});
+        client.certificates().verifyDomainControl(std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -443,7 +443,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateGetEntitlement(std::string{"sample"}, true);
+        client.certificates().getByEntitlement(std::string{"sample"}, true);
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -453,7 +453,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateCreateV2(std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.certificates().createForEntitlement(std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -463,7 +463,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().certificateDownloadEntitlement(std::string{"sample"});
+        client.certificates().downloadByEntitlement(std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -473,7 +473,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().getCustomerCertificatesByCustomerId(std::string{"sample"}, std::int64_t{1}, std::int64_t{1});
+        client.certificates().listCustomerCertificates(std::string{"sample"}, std::int64_t{1}, std::int64_t{1});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -483,7 +483,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().getCertificateDetailByCertIdentifier(std::string{"sample"}, std::string{"sample"});
+        client.certificates().getCustomerCertificate(std::string{"sample"}, std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -493,7 +493,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().getDomainInformationByCertificateId(std::string{"sample"}, std::string{"sample"});
+        client.certificates().listDomainVerifications(std::string{"sample"}, std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -503,7 +503,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().getDomainDetailsByDomain(std::string{"sample"}, std::string{"sample"}, std::string{"sample"});
+        client.certificates().getDomainVerificationDetails(std::string{"sample"}, std::string{"sample"}, std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -523,7 +523,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().retrieveSslByDomainReseller(std::int64_t{1}, std::int64_t{1}, std::string{"sample"}, std::vector<std::string>{"sample"}, std::string{"sample"}, std::string{"sample"});
+        client.certificates().searchSubscriptionsByDomain(std::int64_t{1}, std::int64_t{1}, std::string{"sample"}, std::vector<std::string>{"sample"}, std::string{"sample"}, std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -533,7 +533,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.certificates().retrieveSslByDomainSubscriptionReseller(std::string{"sample"}, std::int64_t{1}, std::int64_t{1}, std::string{"sample"}, std::vector<std::string>{"sample"}, std::string{"sample"}, std::string{"sample"});
+        client.certificates().listSubscriptionCertificates(std::string{"sample"}, std::int64_t{1}, std::int64_t{1}, std::string{"sample"}, std::vector<std::string>{"sample"}, std::string{"sample"}, std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -603,7 +603,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().contactsValidate(std::string{"{\"sample\":true}"}, std::string{"header-value"}, std::string{"sample"});
+        client.domains().contactsValidate(std::string{"123456"}, std::string{"header-value"}, std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -613,7 +613,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().purchase(std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().purchase(std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -633,7 +633,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().validate(std::string{"{\"sample\":true}"});
+        client.domains().validate(std::string{"123456"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -683,7 +683,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().update(std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().update(std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "PATCH");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -693,7 +693,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().updateContacts(std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().updateContacts(std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "PATCH");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -713,7 +713,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().purchasePrivacy(std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().purchasePrivacy(std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -723,7 +723,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().recordAdd(std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().recordAdd(std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "PATCH");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -733,7 +733,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().recordReplace(std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().recordReplace(std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "PUT");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -753,7 +753,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().recordReplaceTypeName(std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().recordReplaceTypeName(std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "PUT");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -773,7 +773,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().recordReplaceType(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().recordReplaceType(std::string{"sample"}, std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "PUT");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -783,7 +783,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().renew(std::string{"sample"}, std::string{"header-value"}, std::string{"{\"sample\":true}"});
+        client.domains().renew(std::string{"sample"}, std::string{"header-value"}, std::string{"123456"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -793,7 +793,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().transferIn(std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().transferIn(std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -813,7 +813,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().getV2CustomersCustomerIdDomainsDomain(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"}, std::vector<std::string>{"sample"});
+        client.domains().getCustomerDomain(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"}, std::vector<std::string>{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -823,7 +823,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().deleteV2CustomersCustomerIdDomainsDomainChangeOfRegistrant(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+        client.domains().cancelCustomerDomainChangeOfRegistrant(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "DELETE");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -833,7 +833,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().getV2CustomersCustomerIdDomainsDomainChangeOfRegistrant(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+        client.domains().getCustomerDomainChangeOfRegistrant(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -843,7 +843,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().patchV2CustomersCustomerIdDomainsDomainDnssecRecords(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().addCustomerDomainDnssecRecords(std::string{"sample"}, std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "PATCH");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -853,7 +853,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().deleteV2CustomersCustomerIdDomainsDomainDnssecRecords(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().removeCustomerDomainDnssecRecords(std::string{"sample"}, std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "DELETE");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -863,7 +863,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().putV2CustomersCustomerIdDomainsDomainNameServers(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().replaceCustomerDomainNameServers(std::string{"sample"}, std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "PUT");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -873,7 +873,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().getV2CustomersCustomerIdDomainsDomainPrivacyForwarding(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+        client.domains().getCustomerDomainPrivacyForwarding(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -883,7 +883,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().patchV2CustomersCustomerIdDomainsDomainPrivacyForwarding(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().updateCustomerDomainPrivacyForwarding(std::string{"sample"}, std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "PATCH");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -893,7 +893,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().postV2CustomersCustomerIdDomainsDomainRedeem(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"}, std::string{"{\"sample\":true}"});
+        client.domains().redeemCustomerDomain(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"}, std::string{"123456"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -903,7 +903,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().postV2CustomersCustomerIdDomainsDomainRenew(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().renewCustomerDomain(std::string{"sample"}, std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -913,7 +913,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().postV2CustomersCustomerIdDomainsDomainTransfer(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().transferCustomerDomain(std::string{"sample"}, std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -923,7 +923,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().getV2CustomersCustomerIdDomainsDomainTransfer(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+        client.domains().getCustomerDomainTransferStatus(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -933,7 +933,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().postV2CustomersCustomerIdDomainsDomainTransferValidate(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().validateCustomerDomainTransfer(std::string{"sample"}, std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -943,7 +943,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().postV2CustomersCustomerIdDomainsDomainTransferInAccept(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().acceptCustomerDomainTransferIn(std::string{"sample"}, std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -953,7 +953,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().postV2CustomersCustomerIdDomainsDomainTransferInCancel(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+        client.domains().cancelCustomerDomainTransferIn(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -963,7 +963,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().postV2CustomersCustomerIdDomainsDomainTransferInRestart(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+        client.domains().restartCustomerDomainTransferIn(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -973,7 +973,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().postV2CustomersCustomerIdDomainsDomainTransferInRetry(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().retryCustomerDomainTransferIn(std::string{"sample"}, std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -983,7 +983,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().postV2CustomersCustomerIdDomainsDomainTransferOut(std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+        client.domains().initiateCustomerDomainTransferOut(std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -993,7 +993,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().postV2CustomersCustomerIdDomainsDomainTransferOutAccept(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+        client.domains().acceptCustomerDomainTransferOut(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1003,7 +1003,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().postV2CustomersCustomerIdDomainsDomainTransferOutReject(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"}, std::string{"sample"});
+        client.domains().rejectCustomerDomainTransferOut(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"}, std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1013,7 +1013,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().domainsForwardsDelete(std::string{"sample"}, std::string{"sample"});
+        client.domains().deleteDomainForwarding(std::string{"sample"}, std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "DELETE");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1023,7 +1023,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().domainsForwardsGet(std::string{"sample"}, std::string{"sample"}, true);
+        client.domains().getDomainForwarding(std::string{"sample"}, std::string{"sample"}, true);
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1033,7 +1033,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().domainsForwardsPut(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"});
+        client.domains().updateDomainForwarding(std::string{"sample"}, std::string{"sample"}, std::string{"123456"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "PUT");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1043,7 +1043,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().domainsForwardsPost(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"});
+        client.domains().createDomainForwarding(std::string{"sample"}, std::string{"sample"}, std::string{"123456"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1053,7 +1053,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().getV2CustomersCustomerIdDomainsDomainActions(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+        client.domains().listCustomerDomainActions(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1063,7 +1063,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().deleteV2CustomersCustomerIdDomainsDomainActionsType(std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+        client.domains().cancelCustomerDomainAction(std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "DELETE");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1073,7 +1073,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().getV2CustomersCustomerIdDomainsDomainActionsType(std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+        client.domains().getCustomerDomainAction(std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1083,7 +1083,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().getV2CustomersCustomerIdDomainsNotifications(std::string{"sample"}, std::string{"header-value"});
+        client.domains().getCustomerDomainNotifications(std::string{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1093,7 +1093,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().getV2CustomersCustomerIdDomainsNotificationsOptIn(std::string{"sample"}, std::string{"header-value"});
+        client.domains().getCustomerDomainNotificationOptIns(std::string{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1103,7 +1103,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().putV2CustomersCustomerIdDomainsNotificationsOptIn(std::string{"sample"}, std::vector<std::string>{"sample"}, std::string{"header-value"});
+        client.domains().updateCustomerDomainNotificationOptIns(std::string{"sample"}, std::vector<std::string>{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "PUT");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1113,7 +1113,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().getV2CustomersCustomerIdDomainsNotificationsSchemasType(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+        client.domains().getCustomerDomainNotificationSchema(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1123,7 +1123,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().postV2CustomersCustomerIdDomainsNotificationsNotificationIdAcknowledge(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+        client.domains().acknowledgeCustomerDomainNotification(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1133,7 +1133,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().postV2CustomersCustomerIdDomainsRegister(std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().registerCustomerDomain(std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1143,7 +1143,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().getV2CustomersCustomerIdDomainsRegisterSchemaTld(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+        client.domains().getCustomerDomainRegisterSchema(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1153,7 +1153,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().postV2CustomersCustomerIdDomainsRegisterValidate(std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().validateCustomerDomainRegister(std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1163,7 +1163,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().getV2DomainsMaintenances(std::string{"header-value"}, std::vector<std::string>{"sample"}, std::string{"sample"}, std::string{"sample"}, std::int64_t{1});
+        client.domains().listDomainMaintenances(std::string{"header-value"}, std::vector<std::string>{"sample"}, std::string{"sample"}, std::string{"sample"}, std::int64_t{1});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1173,7 +1173,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().getV2DomainsMaintenancesMaintenanceId(std::string{"sample"}, std::string{"header-value"});
+        client.domains().getDomainMaintenance(std::string{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1183,7 +1183,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().getV2DomainsUsageYyyymm(std::string{"sample"}, std::string{"header-value"}, std::vector<std::string>{"sample"});
+        client.domains().getDomainUsage(std::string{"sample"}, std::string{"header-value"}, std::vector<std::string>{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1193,7 +1193,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().patchV2CustomersCustomerIdDomainsDomainContacts(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.domains().updateCustomerDomainContacts(std::string{"sample"}, std::string{"sample"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "PATCH");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1203,7 +1203,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.domains().postV2CustomersCustomerIdDomainsDomainRegenerateAuthCode(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+        client.domains().regenerateCustomerDomainAuthCode(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1253,7 +1253,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.shoppers().createSubaccount(std::string{"{\"sample\":true}"});
+        client.shoppers().createSubaccount(std::string{"123456"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1263,7 +1263,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.shoppers().get(std::string{"{\"sample\":true}"}, std::vector<std::string>{"sample"});
+        client.shoppers().get(std::string{"123456"}, std::vector<std::string>{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1273,7 +1273,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.shoppers().update(std::string{"{\"sample\":true}"}, std::string{"{\"sample\":true}"});
+        client.shoppers().update(std::string{"123456"}, std::string{"123456"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "POST");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1283,7 +1283,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.shoppers().delete(std::string{"{\"sample\":true}"}, std::string{"sample"});
+        client.shoppers().deleteShopper(std::string{"123456"}, std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "DELETE");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1293,7 +1293,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.shoppers().getStatus(std::string{"{\"sample\":true}"}, std::string{"sample"});
+        client.shoppers().getStatus(std::string{"123456"}, std::string{"sample"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1303,7 +1303,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.shoppers().changePassword(std::string{"{\"sample\":true}"}, std::string{"{\"sample\":true}"});
+        client.shoppers().changePassword(std::string{"123456"}, std::string{"123456"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "PUT");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1333,7 +1333,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.subscriptions().cancel(std::string{"{\"sample\":true}"}, std::string{"header-value"}, std::string{"header-value"});
+        client.subscriptions().cancel(std::string{"123456"}, std::string{"header-value"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "DELETE");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1343,7 +1343,7 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.subscriptions().get(std::string{"{\"sample\":true}"}, std::string{"header-value"}, std::string{"header-value"});
+        client.subscriptions().get(std::string{"123456"}, std::string{"header-value"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "GET");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
@@ -1353,10 +1353,15 @@ void test_generated_services() {
     {
         transport->responses.push_back({200, {{"content-type", "application/json"}}, "{}"});
         const auto before = transport->requests.size();
-        client.subscriptions().update(std::string{"{\"sample\":true}"}, std::string{"header-value"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+        client.subscriptions().update(std::string{"123456"}, std::string{"header-value"}, std::string{"123456"}, std::string{"header-value"});
         const auto& request = transport->requests.at(before);
         assert(request.method == "PATCH");
         assert(request.headers.at("Authorization") == "sso-key key:secret");
         assert(request.url.find('{') == std::string::npos);
     }
 }
+
+
+
+
+

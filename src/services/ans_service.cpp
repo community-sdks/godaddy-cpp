@@ -2,9 +2,9 @@
 
 namespace godaddy {
 
-AnsService::AnsService(ApiClient& client) : BaseService(client, "https://api.ote-godaddy.com") {}
+AnsService::AnsService(ApiClient& client) : BaseService(client, "ans") {}
 
-Result AnsService::searchAnsName(const Value& agentDisplayName, const Value& version, const Value& agentHost, const Value& protocol, const Value& limit, const Value& offset) {
+Result AnsService::search(const Value& agentDisplayName, const Value& version, const Value& agentHost, const Value& protocol, const Value& limit, const Value& offset) {
     return call(
         "GET",
         "/v1/agents",
@@ -26,7 +26,7 @@ Result AnsService::registerAgent(const Value& body) {
     );
 }
 
-Result AnsService::resolveAnsName(const Value& body) {
+Result AnsService::resolve(const Value& body) {
     return call(
         "POST",
         "/v1/agents/resolution",
@@ -37,7 +37,7 @@ Result AnsService::resolveAnsName(const Value& body) {
     );
 }
 
-Result AnsService::getAgent(const Value& agentId) {
+Result AnsService::get(const Value& agentId) {
     return call(
         "GET",
         "/v1/agents/{agentId}",
@@ -48,7 +48,7 @@ Result AnsService::getAgent(const Value& agentId) {
     );
 }
 
-Result AnsService::validateRegistration(const Value& agentId) {
+Result AnsService::verifyAcme(const Value& agentId) {
     return call(
         "POST",
         "/v1/agents/{agentId}/verify-acme",
@@ -59,7 +59,7 @@ Result AnsService::validateRegistration(const Value& agentId) {
     );
 }
 
-Result AnsService::verifyDnsRecords(const Value& agentId) {
+Result AnsService::verifyDns(const Value& agentId) {
     return call(
         "POST",
         "/v1/agents/{agentId}/verify-dns",
@@ -70,7 +70,7 @@ Result AnsService::verifyDnsRecords(const Value& agentId) {
     );
 }
 
-Result AnsService::getAgentIdentityCertificateByAgentId(const Value& agentId) {
+Result AnsService::getIdentityCertificates(const Value& agentId) {
     return call(
         "GET",
         "/v1/agents/{agentId}/certificates/identity",
@@ -81,7 +81,7 @@ Result AnsService::getAgentIdentityCertificateByAgentId(const Value& agentId) {
     );
 }
 
-Result AnsService::submitAgentIdentityCsrByAgentId(const Value& agentId, const Value& body) {
+Result AnsService::submitIdentityCsr(const Value& agentId, const Value& body) {
     return call(
         "POST",
         "/v1/agents/{agentId}/certificates/identity",
@@ -92,7 +92,7 @@ Result AnsService::submitAgentIdentityCsrByAgentId(const Value& agentId, const V
     );
 }
 
-Result AnsService::getAgentServerCertificateByAgentId(const Value& agentId) {
+Result AnsService::getServerCertificates(const Value& agentId) {
     return call(
         "GET",
         "/v1/agents/{agentId}/certificates/server",
@@ -103,7 +103,7 @@ Result AnsService::getAgentServerCertificateByAgentId(const Value& agentId) {
     );
 }
 
-Result AnsService::submitAgentServerCsrByAgentId(const Value& agentId, const Value& body) {
+Result AnsService::submitServerCsr(const Value& agentId, const Value& body) {
     return call(
         "POST",
         "/v1/agents/{agentId}/certificates/server",
@@ -114,7 +114,7 @@ Result AnsService::submitAgentServerCsrByAgentId(const Value& agentId, const Val
     );
 }
 
-Result AnsService::getAgentCsrStatusByAgentId(const Value& agentId, const Value& csrId) {
+Result AnsService::getCsrStatus(const Value& agentId, const Value& csrId) {
     return call(
         "GET",
         "/v1/agents/{agentId}/csrs/{csrId}/status",
@@ -125,7 +125,7 @@ Result AnsService::getAgentCsrStatusByAgentId(const Value& agentId, const Value&
     );
 }
 
-Result AnsService::getAgentEvents(const Value& xRequestId, const Value& providerId, const Value& lastLogId, const Value& limit) {
+Result AnsService::events(const Value& xRequestId, const Value& providerId, const Value& lastLogId, const Value& limit) {
     return call(
         "GET",
         "/v1/agents/events",
@@ -133,6 +133,17 @@ Result AnsService::getAgentEvents(const Value& xRequestId, const Value& provider
         {{"providerId", providerId}, {"lastLogId", lastLogId}, {"limit", limit}},
         {{"X-Request-Id", xRequestId}},
         Value{}
+    );
+}
+
+Result AnsService::revoke(const Value& agentId, const Value& body) {
+    return call(
+        "POST",
+        "/v1/agents/{agentId}/revoke",
+        {{"agentId", agentId}},
+        {},
+        {},
+        body
     );
 }
 

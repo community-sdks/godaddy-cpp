@@ -15,11 +15,24 @@ auto& service = client.domains();
 Calls `GET /v1/domains`.
 
 ```cpp
-auto response = client.domains().list(std::string{"header-value"}, std::vector<std::string>{"sample"}, std::vector<std::string>{"sample"}, std::int64_t{1}, std::string{"sample"}, std::vector<std::string>{"sample"}, std::string{"sample"});
+auto response = client.domains().list(
+    std::string{"123456"},
+    std::vector<std::string>{"example.com"},
+    std::vector<std::string>{"example.com"},
+    std::int64_t{1},
+    std::string{"example.com"},
+    std::vector<std::string>{"example.com"},
+    std::string{"example.com"}
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "status": "ACTIVE",
+  "expires": "2027-03-11T00:00:00Z",
+  "authCode": "AUTHCODE"
+}
 ```
 
 ### getAgreement
@@ -27,11 +40,24 @@ auto response = client.domains().list(std::string{"header-value"}, std::vector<s
 Calls `GET /v1/domains/agreements`.
 
 ```cpp
-auto response = client.domains().getAgreement(std::vector<std::string>{"sample"}, true, std::string{"header-value"}, true);
+auto response = client.domains().getAgreement(
+    std::vector<std::string>{"example.com"},
+    true,
+    std::string{"123456"},
+    true
+);
 ```
 
 ```json
-{}
+{
+  "agreements": [
+    {
+      "agreementKey": "DNRA",
+      "title": "Domain Name Registration Agreement",
+      "url": "https://www.godaddy.com/legal/agreements/domain-registration"
+    }
+  ]
+}
 ```
 
 ### available
@@ -39,11 +65,22 @@ auto response = client.domains().getAgreement(std::vector<std::string>{"sample"}
 Calls `GET /v1/domains/available`.
 
 ```cpp
-auto response = client.domains().available(std::string{"sample"}, std::string{"sample"}, true);
+auto response = client.domains().available(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    true
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "available": true,
+  "price": 1999,
+  "currency": "USD",
+  "definitive": true,
+  "period": 1
+}
 ```
 
 ### availableBulk
@@ -51,11 +88,23 @@ auto response = client.domains().available(std::string{"sample"}, std::string{"s
 Calls `POST /v1/domains/available`.
 
 ```cpp
-auto response = client.domains().availableBulk(std::vector<std::string>{"sample"}, std::string{"sample"});
+auto response = client.domains().availableBulk(
+    std::vector<std::string>{"example.com"},
+    std::string{"example.com"}
+);
 ```
 
 ```json
-{}
+{
+  "domains": [
+    {
+      "domain": "example.com",
+      "available": true,
+      "price": 1999,
+      "currency": "USD"
+    }
+  ]
+}
 ```
 
 ### contactsValidate
@@ -63,11 +112,23 @@ auto response = client.domains().availableBulk(std::vector<std::string>{"sample"
 Calls `POST /v1/domains/contacts/validate`.
 
 ```cpp
-auto response = client.domains().contactsValidate(std::string{"{\"sample\":true}"}, std::string{"header-value"}, std::string{"sample"});
+auto response = client.domains().contactsValidate(
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"},
+    std::string{"example.com"}
+);
 ```
 
 ```json
-{}
+{
+  "valid": false,
+  "errors": [
+    {
+      "path": "domain",
+      "message": "Domain is invalid"
+    }
+  ]
+}
 ```
 
 ### purchase
@@ -75,11 +136,18 @@ auto response = client.domains().contactsValidate(std::string{"{\"sample\":true}
 Calls `POST /v1/domains/purchase`.
 
 ```cpp
-auto response = client.domains().purchase(std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().purchase(
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "orderId": "1234567890",
+  "status": "PENDING",
+  "submittedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
 ### schema
@@ -87,11 +155,21 @@ auto response = client.domains().purchase(std::string{"{\"sample\":true}"}, std:
 Calls `GET /v1/domains/purchase/schema/{tld}`.
 
 ```cpp
-auto response = client.domains().schema(std::string{"sample"});
+auto response = client.domains().schema(
+    std::string{"example.com"}
+);
 ```
 
 ```json
-{}
+{
+  "fields": [
+    {
+      "path": "consent.agreementKeys",
+      "type": "array",
+      "required": true
+    }
+  ]
+}
 ```
 
 ### validate
@@ -99,11 +177,21 @@ auto response = client.domains().schema(std::string{"sample"});
 Calls `POST /v1/domains/purchase/validate`.
 
 ```cpp
-auto response = client.domains().validate(std::string{"{\"sample\":true}"});
+auto response = client.domains().validate(
+    std::string{R"({"domain":"example.com"})"}
+);
 ```
 
 ```json
-{}
+{
+  "valid": false,
+  "errors": [
+    {
+      "path": "domain",
+      "message": "Domain is invalid"
+    }
+  ]
+}
 ```
 
 ### suggest
@@ -111,11 +199,25 @@ auto response = client.domains().validate(std::string{"{\"sample\":true}"});
 Calls `GET /v1/domains/suggest`.
 
 ```cpp
-auto response = client.domains().suggest(std::string{"header-value"}, std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::vector<std::string>{"sample"}, std::vector<std::string>{"sample"}, std::int64_t{1}, std::int64_t{1}, std::int64_t{1}, std::int64_t{1});
+auto response = client.domains().suggest(
+    std::string{"123456"},
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::vector<std::string>{"example.com"},
+    std::vector<std::string>{"example.com"},
+    std::int64_t{1},
+    std::int64_t{1},
+    std::int64_t{1},
+    std::int64_t{1}
+);
 ```
 
 ```json
-{}
+[
+  "example.com",
+  "example.net"
+]
 ```
 
 ### tlds
@@ -123,11 +225,16 @@ auto response = client.domains().suggest(std::string{"header-value"}, std::strin
 Calls `GET /v1/domains/tlds`.
 
 ```cpp
-auto response = client.domains().tlds();
+auto response = client.domains().tlds(
+);
 ```
 
 ```json
-{}
+{
+  "tld": "com",
+  "type": "GENERIC",
+  "isIdn": false
+}
 ```
 
 ### cancel
@@ -135,11 +242,15 @@ auto response = client.domains().tlds();
 Calls `DELETE /v1/domains/{domain}`.
 
 ```cpp
-auto response = client.domains().cancel(std::string{"sample"});
+auto response = client.domains().cancel(
+    std::string{"example.com"}
+);
 ```
 
 ```json
-{}
+{
+  "success": true
+}
 ```
 
 ### get
@@ -147,11 +258,19 @@ auto response = client.domains().cancel(std::string{"sample"});
 Calls `GET /v1/domains/{domain}`.
 
 ```cpp
-auto response = client.domains().get(std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().get(
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "status": "ACTIVE",
+  "expires": "2027-03-11T00:00:00Z",
+  "authCode": "AUTHCODE"
+}
 ```
 
 ### update
@@ -159,11 +278,19 @@ auto response = client.domains().get(std::string{"sample"}, std::string{"header-
 Calls `PATCH /v1/domains/{domain}`.
 
 ```cpp
-auto response = client.domains().update(std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().update(
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "orderId": "1234567890",
+  "status": "PENDING",
+  "submittedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
 ### updateContacts
@@ -171,11 +298,19 @@ auto response = client.domains().update(std::string{"sample"}, std::string{"{\"s
 Calls `PATCH /v1/domains/{domain}/contacts`.
 
 ```cpp
-auto response = client.domains().updateContacts(std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().updateContacts(
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "orderId": "1234567890",
+  "status": "PENDING",
+  "submittedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
 ### cancelPrivacy
@@ -183,11 +318,16 @@ auto response = client.domains().updateContacts(std::string{"sample"}, std::stri
 Calls `DELETE /v1/domains/{domain}/privacy`.
 
 ```cpp
-auto response = client.domains().cancelPrivacy(std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().cancelPrivacy(
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "success": true
+}
 ```
 
 ### purchasePrivacy
@@ -195,11 +335,19 @@ auto response = client.domains().cancelPrivacy(std::string{"sample"}, std::strin
 Calls `POST /v1/domains/{domain}/privacy/purchase`.
 
 ```cpp
-auto response = client.domains().purchasePrivacy(std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().purchasePrivacy(
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "orderId": "1234567890",
+  "status": "PENDING",
+  "submittedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
 ### recordAdd
@@ -207,11 +355,20 @@ auto response = client.domains().purchasePrivacy(std::string{"sample"}, std::str
 Calls `PATCH /v1/domains/{domain}/records`.
 
 ```cpp
-auto response = client.domains().recordAdd(std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().recordAdd(
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "type": "A",
+  "name": "@",
+  "data": "203.0.113.10",
+  "ttl": 600
+}
 ```
 
 ### recordReplace
@@ -219,11 +376,20 @@ auto response = client.domains().recordAdd(std::string{"sample"}, std::string{"{
 Calls `PUT /v1/domains/{domain}/records`.
 
 ```cpp
-auto response = client.domains().recordReplace(std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().recordReplace(
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "type": "A",
+  "name": "@",
+  "data": "203.0.113.10",
+  "ttl": 600
+}
 ```
 
 ### recordGet
@@ -231,11 +397,23 @@ auto response = client.domains().recordReplace(std::string{"sample"}, std::strin
 Calls `GET /v1/domains/{domain}/records/{type}/{name}`.
 
 ```cpp
-auto response = client.domains().recordGet(std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::string{"header-value"}, std::int64_t{1}, std::int64_t{1});
+auto response = client.domains().recordGet(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"},
+    std::int64_t{1},
+    std::int64_t{1}
+);
 ```
 
 ```json
-{}
+{
+  "type": "A",
+  "name": "@",
+  "data": "203.0.113.10",
+  "ttl": 600
+}
 ```
 
 ### recordReplaceTypeName
@@ -243,11 +421,22 @@ auto response = client.domains().recordGet(std::string{"sample"}, std::string{"s
 Calls `PUT /v1/domains/{domain}/records/{type}/{name}`.
 
 ```cpp
-auto response = client.domains().recordReplaceTypeName(std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().recordReplaceTypeName(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "type": "A",
+  "name": "@",
+  "data": "203.0.113.10",
+  "ttl": 600
+}
 ```
 
 ### recordDeleteTypeName
@@ -255,11 +444,21 @@ auto response = client.domains().recordReplaceTypeName(std::string{"sample"}, st
 Calls `DELETE /v1/domains/{domain}/records/{type}/{name}`.
 
 ```cpp
-auto response = client.domains().recordDeleteTypeName(std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().recordDeleteTypeName(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "type": "A",
+  "name": "@",
+  "data": "203.0.113.10",
+  "ttl": 600
+}
 ```
 
 ### recordReplaceType
@@ -267,11 +466,21 @@ auto response = client.domains().recordDeleteTypeName(std::string{"sample"}, std
 Calls `PUT /v1/domains/{domain}/records/{type}`.
 
 ```cpp
-auto response = client.domains().recordReplaceType(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().recordReplaceType(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "type": "A",
+  "name": "@",
+  "data": "203.0.113.10",
+  "ttl": 600
+}
 ```
 
 ### renew
@@ -279,11 +488,19 @@ auto response = client.domains().recordReplaceType(std::string{"sample"}, std::s
 Calls `POST /v1/domains/{domain}/renew`.
 
 ```cpp
-auto response = client.domains().renew(std::string{"sample"}, std::string{"header-value"}, std::string{"{\"sample\":true}"});
+auto response = client.domains().renew(
+    std::string{"example.com"},
+    std::string{"123456"},
+    std::string{R"({"domain":"example.com"})"}
+);
 ```
 
 ```json
-{}
+{
+  "orderId": "1234567890",
+  "status": "PENDING",
+  "submittedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
 ### transferIn
@@ -291,11 +508,19 @@ auto response = client.domains().renew(std::string{"sample"}, std::string{"heade
 Calls `POST /v1/domains/{domain}/transfer`.
 
 ```cpp
-auto response = client.domains().transferIn(std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().transferIn(
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "transferStatus": "PENDING",
+  "updatedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
 ### verifyEmail
@@ -303,490 +528,857 @@ auto response = client.domains().transferIn(std::string{"sample"}, std::string{"
 Calls `POST /v1/domains/{domain}/verifyRegistrantEmail`.
 
 ```cpp
-auto response = client.domains().verifyEmail(std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().verifyEmail(
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "status": "ACTIVE",
+  "expires": "2027-03-11T00:00:00Z",
+  "authCode": "AUTHCODE"
+}
 ```
 
-### getV2CustomersCustomerIdDomainsDomain
+### getCustomerDomain
 
 Calls `GET /v2/customers/{customerId}/domains/{domain}`.
 
 ```cpp
-auto response = client.domains().getV2CustomersCustomerIdDomainsDomain(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"}, std::vector<std::string>{"sample"});
+auto response = client.domains().getCustomerDomain(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"},
+    std::vector<std::string>{"example.com"}
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "status": "ACTIVE",
+  "expires": "2027-03-11T00:00:00Z",
+  "authCode": "AUTHCODE"
+}
 ```
 
-### deleteV2CustomersCustomerIdDomainsDomainChangeOfRegistrant
+### cancelCustomerDomainChangeOfRegistrant
 
 Calls `DELETE /v2/customers/{customerId}/domains/{domain}/changeOfRegistrant`.
 
 ```cpp
-auto response = client.domains().deleteV2CustomersCustomerIdDomainsDomainChangeOfRegistrant(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().cancelCustomerDomainChangeOfRegistrant(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "success": true
+}
 ```
 
-### getV2CustomersCustomerIdDomainsDomainChangeOfRegistrant
+### getCustomerDomainChangeOfRegistrant
 
 Calls `GET /v2/customers/{customerId}/domains/{domain}/changeOfRegistrant`.
 
 ```cpp
-auto response = client.domains().getV2CustomersCustomerIdDomainsDomainChangeOfRegistrant(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().getCustomerDomainChangeOfRegistrant(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "status": "ACTIVE",
+  "expires": "2027-03-11T00:00:00Z",
+  "authCode": "AUTHCODE"
+}
 ```
 
-### patchV2CustomersCustomerIdDomainsDomainDnssecRecords
+### addCustomerDomainDnssecRecords
 
 Calls `PATCH /v2/customers/{customerId}/domains/{domain}/dnssecRecords`.
 
 ```cpp
-auto response = client.domains().patchV2CustomersCustomerIdDomainsDomainDnssecRecords(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().addCustomerDomainDnssecRecords(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "type": "A",
+  "name": "@",
+  "data": "203.0.113.10",
+  "ttl": 600
+}
 ```
 
-### deleteV2CustomersCustomerIdDomainsDomainDnssecRecords
+### removeCustomerDomainDnssecRecords
 
 Calls `DELETE /v2/customers/{customerId}/domains/{domain}/dnssecRecords`.
 
 ```cpp
-auto response = client.domains().deleteV2CustomersCustomerIdDomainsDomainDnssecRecords(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().removeCustomerDomainDnssecRecords(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "type": "A",
+  "name": "@",
+  "data": "203.0.113.10",
+  "ttl": 600
+}
 ```
 
-### putV2CustomersCustomerIdDomainsDomainNameServers
+### replaceCustomerDomainNameServers
 
 Calls `PUT /v2/customers/{customerId}/domains/{domain}/nameServers`.
 
 ```cpp
-auto response = client.domains().putV2CustomersCustomerIdDomainsDomainNameServers(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().replaceCustomerDomainNameServers(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "orderId": "1234567890",
+  "status": "PENDING",
+  "submittedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
-### getV2CustomersCustomerIdDomainsDomainPrivacyForwarding
+### getCustomerDomainPrivacyForwarding
 
 Calls `GET /v2/customers/{customerId}/domains/{domain}/privacy/forwarding`.
 
 ```cpp
-auto response = client.domains().getV2CustomersCustomerIdDomainsDomainPrivacyForwarding(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().getCustomerDomainPrivacyForwarding(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "fqdn": "example.com",
+  "type": "PERMANENT",
+  "to": "https://www.example.com"
+}
 ```
 
-### patchV2CustomersCustomerIdDomainsDomainPrivacyForwarding
+### updateCustomerDomainPrivacyForwarding
 
 Calls `PATCH /v2/customers/{customerId}/domains/{domain}/privacy/forwarding`.
 
 ```cpp
-auto response = client.domains().patchV2CustomersCustomerIdDomainsDomainPrivacyForwarding(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().updateCustomerDomainPrivacyForwarding(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "fqdn": "example.com",
+  "type": "PERMANENT",
+  "to": "https://www.example.com"
+}
 ```
 
-### postV2CustomersCustomerIdDomainsDomainRedeem
+### redeemCustomerDomain
 
 Calls `POST /v2/customers/{customerId}/domains/{domain}/redeem`.
 
 ```cpp
-auto response = client.domains().postV2CustomersCustomerIdDomainsDomainRedeem(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"}, std::string{"{\"sample\":true}"});
+auto response = client.domains().redeemCustomerDomain(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"},
+    std::string{R"({"domain":"example.com"})"}
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "status": "ACTIVE",
+  "expires": "2027-03-11T00:00:00Z",
+  "authCode": "AUTHCODE"
+}
 ```
 
-### postV2CustomersCustomerIdDomainsDomainRenew
+### renewCustomerDomain
 
 Calls `POST /v2/customers/{customerId}/domains/{domain}/renew`.
 
 ```cpp
-auto response = client.domains().postV2CustomersCustomerIdDomainsDomainRenew(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().renewCustomerDomain(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "orderId": "1234567890",
+  "status": "PENDING",
+  "submittedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
-### postV2CustomersCustomerIdDomainsDomainTransfer
+### transferCustomerDomain
 
 Calls `POST /v2/customers/{customerId}/domains/{domain}/transfer`.
 
 ```cpp
-auto response = client.domains().postV2CustomersCustomerIdDomainsDomainTransfer(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().transferCustomerDomain(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "transferStatus": "PENDING",
+  "updatedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
-### getV2CustomersCustomerIdDomainsDomainTransfer
+### getCustomerDomainTransferStatus
 
 Calls `GET /v2/customers/{customerId}/domains/{domain}/transfer`.
 
 ```cpp
-auto response = client.domains().getV2CustomersCustomerIdDomainsDomainTransfer(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().getCustomerDomainTransferStatus(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "transferStatus": "PENDING",
+  "updatedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
-### postV2CustomersCustomerIdDomainsDomainTransferValidate
+### validateCustomerDomainTransfer
 
 Calls `POST /v2/customers/{customerId}/domains/{domain}/transfer/validate`.
 
 ```cpp
-auto response = client.domains().postV2CustomersCustomerIdDomainsDomainTransferValidate(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().validateCustomerDomainTransfer(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "valid": false,
+  "errors": [
+    {
+      "path": "domain",
+      "message": "Domain is invalid"
+    }
+  ]
+}
 ```
 
-### postV2CustomersCustomerIdDomainsDomainTransferInAccept
+### acceptCustomerDomainTransferIn
 
 Calls `POST /v2/customers/{customerId}/domains/{domain}/transferInAccept`.
 
 ```cpp
-auto response = client.domains().postV2CustomersCustomerIdDomainsDomainTransferInAccept(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().acceptCustomerDomainTransferIn(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "transferStatus": "PENDING",
+  "updatedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
-### postV2CustomersCustomerIdDomainsDomainTransferInCancel
+### cancelCustomerDomainTransferIn
 
 Calls `POST /v2/customers/{customerId}/domains/{domain}/transferInCancel`.
 
 ```cpp
-auto response = client.domains().postV2CustomersCustomerIdDomainsDomainTransferInCancel(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().cancelCustomerDomainTransferIn(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "transferStatus": "PENDING",
+  "updatedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
-### postV2CustomersCustomerIdDomainsDomainTransferInRestart
+### restartCustomerDomainTransferIn
 
 Calls `POST /v2/customers/{customerId}/domains/{domain}/transferInRestart`.
 
 ```cpp
-auto response = client.domains().postV2CustomersCustomerIdDomainsDomainTransferInRestart(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().restartCustomerDomainTransferIn(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "transferStatus": "PENDING",
+  "updatedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
-### postV2CustomersCustomerIdDomainsDomainTransferInRetry
+### retryCustomerDomainTransferIn
 
 Calls `POST /v2/customers/{customerId}/domains/{domain}/transferInRetry`.
 
 ```cpp
-auto response = client.domains().postV2CustomersCustomerIdDomainsDomainTransferInRetry(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().retryCustomerDomainTransferIn(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "transferStatus": "PENDING",
+  "updatedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
-### postV2CustomersCustomerIdDomainsDomainTransferOut
+### initiateCustomerDomainTransferOut
 
 Calls `POST /v2/customers/{customerId}/domains/{domain}/transferOut`.
 
 ```cpp
-auto response = client.domains().postV2CustomersCustomerIdDomainsDomainTransferOut(std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().initiateCustomerDomainTransferOut(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "transferStatus": "PENDING",
+  "updatedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
-### postV2CustomersCustomerIdDomainsDomainTransferOutAccept
+### acceptCustomerDomainTransferOut
 
 Calls `POST /v2/customers/{customerId}/domains/{domain}/transferOutAccept`.
 
 ```cpp
-auto response = client.domains().postV2CustomersCustomerIdDomainsDomainTransferOutAccept(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().acceptCustomerDomainTransferOut(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "transferStatus": "PENDING",
+  "updatedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
-### postV2CustomersCustomerIdDomainsDomainTransferOutReject
+### rejectCustomerDomainTransferOut
 
 Calls `POST /v2/customers/{customerId}/domains/{domain}/transferOutReject`.
 
 ```cpp
-auto response = client.domains().postV2CustomersCustomerIdDomainsDomainTransferOutReject(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"}, std::string{"sample"});
+auto response = client.domains().rejectCustomerDomainTransferOut(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"},
+    std::string{"example.com"}
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "transferStatus": "PENDING",
+  "updatedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
-### domainsForwardsDelete
+### deleteDomainForwarding
 
 Calls `DELETE /v2/customers/{customerId}/domains/forwards/{fqdn}`.
 
 ```cpp
-auto response = client.domains().domainsForwardsDelete(std::string{"sample"}, std::string{"sample"});
+auto response = client.domains().deleteDomainForwarding(
+    std::string{"example.com"},
+    std::string{"example.com"}
+);
 ```
 
 ```json
-{}
+{
+  "fqdn": "example.com",
+  "type": "PERMANENT",
+  "to": "https://www.example.com"
+}
 ```
 
-### domainsForwardsGet
+### getDomainForwarding
 
 Calls `GET /v2/customers/{customerId}/domains/forwards/{fqdn}`.
 
 ```cpp
-auto response = client.domains().domainsForwardsGet(std::string{"sample"}, std::string{"sample"}, true);
+auto response = client.domains().getDomainForwarding(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    true
+);
 ```
 
 ```json
-{}
+{
+  "fqdn": "example.com",
+  "type": "PERMANENT",
+  "to": "https://www.example.com"
+}
 ```
 
-### domainsForwardsPut
+### updateDomainForwarding
 
 Calls `PUT /v2/customers/{customerId}/domains/forwards/{fqdn}`.
 
 ```cpp
-auto response = client.domains().domainsForwardsPut(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"});
+auto response = client.domains().updateDomainForwarding(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"}
+);
 ```
 
 ```json
-{}
+{
+  "fqdn": "example.com",
+  "type": "PERMANENT",
+  "to": "https://www.example.com"
+}
 ```
 
-### domainsForwardsPost
+### createDomainForwarding
 
 Calls `POST /v2/customers/{customerId}/domains/forwards/{fqdn}`.
 
 ```cpp
-auto response = client.domains().domainsForwardsPost(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"});
+auto response = client.domains().createDomainForwarding(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"}
+);
 ```
 
 ```json
-{}
+{
+  "fqdn": "example.com",
+  "type": "PERMANENT",
+  "to": "https://www.example.com"
+}
 ```
 
-### getV2CustomersCustomerIdDomainsDomainActions
+### listCustomerDomainActions
 
 Calls `GET /v2/customers/{customerId}/domains/{domain}/actions`.
 
 ```cpp
-auto response = client.domains().getV2CustomersCustomerIdDomainsDomainActions(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().listCustomerDomainActions(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "actionType": "CHANGE_OF_REGISTRANT",
+  "status": "PENDING",
+  "createdAt": "2026-03-11T12:00:00Z",
+  "domain": "example.com"
+}
 ```
 
-### deleteV2CustomersCustomerIdDomainsDomainActionsType
+### cancelCustomerDomainAction
 
 Calls `DELETE /v2/customers/{customerId}/domains/{domain}/actions/{type}`.
 
 ```cpp
-auto response = client.domains().deleteV2CustomersCustomerIdDomainsDomainActionsType(std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().cancelCustomerDomainAction(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "success": true
+}
 ```
 
-### getV2CustomersCustomerIdDomainsDomainActionsType
+### getCustomerDomainAction
 
 Calls `GET /v2/customers/{customerId}/domains/{domain}/actions/{type}`.
 
 ```cpp
-auto response = client.domains().getV2CustomersCustomerIdDomainsDomainActionsType(std::string{"sample"}, std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().getCustomerDomainAction(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "status": "ACTIVE",
+  "expires": "2027-03-11T00:00:00Z",
+  "authCode": "AUTHCODE"
+}
 ```
 
-### getV2CustomersCustomerIdDomainsNotifications
+### getCustomerDomainNotifications
 
 Calls `GET /v2/customers/{customerId}/domains/notifications`.
 
 ```cpp
-auto response = client.domains().getV2CustomersCustomerIdDomainsNotifications(std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().getCustomerDomainNotifications(
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "type": "EXPIRATION",
+  "optedIn": true
+}
 ```
 
-### getV2CustomersCustomerIdDomainsNotificationsOptIn
+### getCustomerDomainNotificationOptIns
 
 Calls `GET /v2/customers/{customerId}/domains/notifications/optIn`.
 
 ```cpp
-auto response = client.domains().getV2CustomersCustomerIdDomainsNotificationsOptIn(std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().getCustomerDomainNotificationOptIns(
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "type": "EXPIRATION",
+  "optedIn": true
+}
 ```
 
-### putV2CustomersCustomerIdDomainsNotificationsOptIn
+### updateCustomerDomainNotificationOptIns
 
 Calls `PUT /v2/customers/{customerId}/domains/notifications/optIn`.
 
 ```cpp
-auto response = client.domains().putV2CustomersCustomerIdDomainsNotificationsOptIn(std::string{"sample"}, std::vector<std::string>{"sample"}, std::string{"header-value"});
+auto response = client.domains().updateCustomerDomainNotificationOptIns(
+    std::string{"example.com"},
+    std::vector<std::string>{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "type": "EXPIRATION",
+  "optedIn": true
+}
 ```
 
-### getV2CustomersCustomerIdDomainsNotificationsSchemasType
+### getCustomerDomainNotificationSchema
 
 Calls `GET /v2/customers/{customerId}/domains/notifications/schemas/{type}`.
 
 ```cpp
-auto response = client.domains().getV2CustomersCustomerIdDomainsNotificationsSchemasType(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().getCustomerDomainNotificationSchema(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "fields": [
+    {
+      "path": "type",
+      "type": "string",
+      "required": true
+    }
+  ]
+}
 ```
 
-### postV2CustomersCustomerIdDomainsNotificationsNotificationIdAcknowledge
+### acknowledgeCustomerDomainNotification
 
 Calls `POST /v2/customers/{customerId}/domains/notifications/{notificationId}/acknowledge`.
 
 ```cpp
-auto response = client.domains().postV2CustomersCustomerIdDomainsNotificationsNotificationIdAcknowledge(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().acknowledgeCustomerDomainNotification(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "notificationId": "notif_1",
+  "acknowledged": true,
+  "acknowledgedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
-### postV2CustomersCustomerIdDomainsRegister
+### registerCustomerDomain
 
 Calls `POST /v2/customers/{customerId}/domains/register`.
 
 ```cpp
-auto response = client.domains().postV2CustomersCustomerIdDomainsRegister(std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().registerCustomerDomain(
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "orderId": "1234567890",
+  "status": "PENDING",
+  "submittedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
-### getV2CustomersCustomerIdDomainsRegisterSchemaTld
+### getCustomerDomainRegisterSchema
 
 Calls `GET /v2/customers/{customerId}/domains/register/schema/{tld}`.
 
 ```cpp
-auto response = client.domains().getV2CustomersCustomerIdDomainsRegisterSchemaTld(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().getCustomerDomainRegisterSchema(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "fields": [
+    {
+      "path": "consent.agreementKeys",
+      "type": "array",
+      "required": true
+    }
+  ]
+}
 ```
 
-### postV2CustomersCustomerIdDomainsRegisterValidate
+### validateCustomerDomainRegister
 
 Calls `POST /v2/customers/{customerId}/domains/register/validate`.
 
 ```cpp
-auto response = client.domains().postV2CustomersCustomerIdDomainsRegisterValidate(std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().validateCustomerDomainRegister(
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "valid": false,
+  "errors": [
+    {
+      "path": "domain",
+      "message": "Domain is invalid"
+    }
+  ]
+}
 ```
 
-### getV2DomainsMaintenances
+### listDomainMaintenances
 
 Calls `GET /v2/domains/maintenances`.
 
 ```cpp
-auto response = client.domains().getV2DomainsMaintenances(std::string{"header-value"}, std::vector<std::string>{"sample"}, std::string{"sample"}, std::string{"sample"}, std::int64_t{1});
+auto response = client.domains().listDomainMaintenances(
+    std::string{"123456"},
+    std::vector<std::string>{"example.com"},
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::int64_t{1}
+);
 ```
 
 ```json
-{}
+{
+  "maintenanceId": "mnt_1",
+  "status": "SCHEDULED",
+  "startsAt": "2026-03-20T00:00:00Z",
+  "endsAt": "2026-03-20T02:00:00Z"
+}
 ```
 
-### getV2DomainsMaintenancesMaintenanceId
+### getDomainMaintenance
 
 Calls `GET /v2/domains/maintenances/{maintenanceId}`.
 
 ```cpp
-auto response = client.domains().getV2DomainsMaintenancesMaintenanceId(std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().getDomainMaintenance(
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "maintenanceId": "mnt_1",
+  "status": "SCHEDULED",
+  "startsAt": "2026-03-20T00:00:00Z",
+  "endsAt": "2026-03-20T02:00:00Z"
+}
 ```
 
-### getV2DomainsUsageYyyymm
+### getDomainUsage
 
 Calls `GET /v2/domains/usage/{yyyymm}`.
 
 ```cpp
-auto response = client.domains().getV2DomainsUsageYyyymm(std::string{"sample"}, std::string{"header-value"}, std::vector<std::string>{"sample"});
+auto response = client.domains().getDomainUsage(
+    std::string{"example.com"},
+    std::string{"123456"},
+    std::vector<std::string>{"example.com"}
+);
 ```
 
 ```json
-{}
+{
+  "month": "202603",
+  "domainsUnderManagement": 120,
+  "domainAdds": 10,
+  "domainTransfersIn": 3
+}
 ```
 
-### patchV2CustomersCustomerIdDomainsDomainContacts
+### updateCustomerDomainContacts
 
 Calls `PATCH /v2/customers/{customerId}/domains/{domain}/contacts`.
 
 ```cpp
-auto response = client.domains().patchV2CustomersCustomerIdDomainsDomainContacts(std::string{"sample"}, std::string{"sample"}, std::string{"{\"sample\":true}"}, std::string{"header-value"});
+auto response = client.domains().updateCustomerDomainContacts(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "orderId": "1234567890",
+  "status": "PENDING",
+  "submittedAt": "2026-03-11T12:00:00Z"
+}
 ```
 
-### postV2CustomersCustomerIdDomainsDomainRegenerateAuthCode
+### regenerateCustomerDomainAuthCode
 
 Calls `POST /v2/customers/{customerId}/domains/{domain}/regenerateAuthCode`.
 
 ```cpp
-auto response = client.domains().postV2CustomersCustomerIdDomainsDomainRegenerateAuthCode(std::string{"sample"}, std::string{"sample"}, std::string{"header-value"});
+auto response = client.domains().regenerateCustomerDomainAuthCode(
+    std::string{"example.com"},
+    std::string{"example.com"},
+    std::string{"123456"}
+);
 ```
 
 ```json
-{}
+{
+  "domain": "example.com",
+  "status": "ACTIVE",
+  "expires": "2027-03-11T00:00:00Z",
+  "authCode": "AUTHCODE"
+}
 ```
+
+
+
+
+
 

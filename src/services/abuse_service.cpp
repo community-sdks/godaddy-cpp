@@ -2,7 +2,7 @@
 
 namespace godaddy {
 
-AbuseService::AbuseService(ApiClient& client) : BaseService(client, "https://api.ote-godaddy.com") {}
+AbuseService::AbuseService(ApiClient& client) : BaseService(client, "abuse") {}
 
 Result AbuseService::getTickets(const Value& typeValue, const Value& closed, const Value& sourceDomainOrIp, const Value& target, const Value& createdStart, const Value& createdEnd, const Value& limit, const Value& offset) {
     return call(

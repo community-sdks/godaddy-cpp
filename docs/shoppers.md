@@ -15,11 +15,16 @@ auto& service = client.shoppers();
 Calls `POST /v1/shoppers/subaccount`.
 
 ```cpp
-auto response = client.shoppers().createSubaccount(std::string{"{\"sample\":true}"});
+auto response = client.shoppers().createSubaccount(
+    std::string{R"({"domain":"example.com"})"}
+);
 ```
 
 ```json
-{}
+{
+  "shopperId": "987654321",
+  "customerId": "123456789"
+}
 ```
 
 ### get
@@ -27,11 +32,21 @@ auto response = client.shoppers().createSubaccount(std::string{"{\"sample\":true
 Calls `GET /v1/shoppers/{shopperId}`.
 
 ```cpp
-auto response = client.shoppers().get(std::string{"{\"sample\":true}"}, std::vector<std::string>{"sample"});
+auto response = client.shoppers().get(
+    std::string{R"({"domain":"example.com"})"},
+    std::vector<std::string>{"example.com"}
+);
 ```
 
 ```json
-{}
+{
+  "shopperId": "987654321",
+  "nameFirst": "Jane",
+  "nameLast": "Doe",
+  "email": "admin@example.com",
+  "marketId": "en-US",
+  "customerId": "123456789"
+}
 ```
 
 ### update
@@ -39,11 +54,17 @@ auto response = client.shoppers().get(std::string{"{\"sample\":true}"}, std::vec
 Calls `POST /v1/shoppers/{shopperId}`.
 
 ```cpp
-auto response = client.shoppers().update(std::string{"{\"sample\":true}"}, std::string{"{\"sample\":true}"});
+auto response = client.shoppers().update(
+    std::string{R"({"domain":"example.com"})"},
+    std::string{R"({"domain":"example.com"})"}
+);
 ```
 
 ```json
-{}
+{
+  "shopperId": "987654321",
+  "customerId": "123456789"
+}
 ```
 
 ### delete
@@ -51,11 +72,16 @@ auto response = client.shoppers().update(std::string{"{\"sample\":true}"}, std::
 Calls `DELETE /v1/shoppers/{shopperId}`.
 
 ```cpp
-auto response = client.shoppers().delete(std::string{"{\"sample\":true}"}, std::string{"sample"});
+auto response = client.shoppers().deleteShopper(
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"example.com"}
+);
 ```
 
 ```json
-{}
+{
+  "deleted": true
+}
 ```
 
 ### getStatus
@@ -63,11 +89,16 @@ auto response = client.shoppers().delete(std::string{"{\"sample\":true}"}, std::
 Calls `GET /v1/shoppers/{shopperId}/status`.
 
 ```cpp
-auto response = client.shoppers().getStatus(std::string{"{\"sample\":true}"}, std::string{"sample"});
+auto response = client.shoppers().getStatus(
+    std::string{R"({"domain":"example.com"})"},
+    std::string{"example.com"}
+);
 ```
 
 ```json
-{}
+{
+  "billingState": "ACTIVE"
+}
 ```
 
 ### changePassword
@@ -75,10 +106,20 @@ auto response = client.shoppers().getStatus(std::string{"{\"sample\":true}"}, st
 Calls `PUT /v1/shoppers/{shopperId}/factors/password`.
 
 ```cpp
-auto response = client.shoppers().changePassword(std::string{"{\"sample\":true}"}, std::string{"{\"sample\":true}"});
+auto response = client.shoppers().changePassword(
+    std::string{R"({"domain":"example.com"})"},
+    std::string{R"({"domain":"example.com"})"}
+);
 ```
 
 ```json
-{}
+{
+  "shopperId": "987654321",
+  "customerId": "123456789"
+}
 ```
+
+
+
+
 

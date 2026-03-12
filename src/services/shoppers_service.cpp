@@ -2,7 +2,7 @@
 
 namespace godaddy {
 
-ShoppersService::ShoppersService(ApiClient& client) : BaseService(client, "https://api.ote-godaddy.com") {}
+ShoppersService::ShoppersService(ApiClient& client) : BaseService(client, "shoppers") {}
 
 Result ShoppersService::createSubaccount(const Value& subaccount) {
     return call(
@@ -37,7 +37,7 @@ Result ShoppersService::update(const Value& shopperId, const Value& shopper) {
     );
 }
 
-Result ShoppersService::delete(const Value& shopperId, const Value& auditClientIp) {
+Result ShoppersService::deleteShopper(const Value& shopperId, const Value& auditClientIp) {
     return call(
         "DELETE",
         "/v1/shoppers/{shopperId}",

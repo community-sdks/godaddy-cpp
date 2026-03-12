@@ -2,7 +2,7 @@
 
 namespace godaddy {
 
-AftermarketService::AftermarketService(ApiClient& client) : BaseService(client, "https://api.ote-godaddy.com") {}
+AftermarketService::AftermarketService(ApiClient& client) : BaseService(client, "aftermarket") {}
 
 Result AftermarketService::getListings(const Value& customerId, const Value& domains, const Value& listingStatus, const Value& transferBefore, const Value& transferAfter, const Value& limit, const Value& offset) {
     return call(

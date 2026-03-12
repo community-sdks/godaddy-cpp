@@ -2,7 +2,7 @@
 
 namespace godaddy {
 
-ParkingService::ParkingService(ApiClient& client) : BaseService(client, "https://api.ote-godaddy.com") {}
+ParkingService::ParkingService(ApiClient& client) : BaseService(client, "parking") {}
 
 Result ParkingService::getMetrics(const Value& customerId, const Value& periodStartPtz, const Value& periodEndPtz, const Value& limit, const Value& offset, const Value& xRequestId) {
     return call(

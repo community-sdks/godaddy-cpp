@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.20)
 project(godaddy_cpp LANGUAGES CXX)
 
+include(CTest)
+enable_testing()
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -35,3 +38,5 @@ add_executable(godaddy_cpp_tests
 )
 
 target_link_libraries(godaddy_cpp_tests PRIVATE godaddy_cpp)
+
+add_test(NAME godaddy_cpp_tests COMMAND godaddy_cpp_tests)

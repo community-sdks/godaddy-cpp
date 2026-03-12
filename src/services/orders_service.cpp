@@ -2,7 +2,7 @@
 
 namespace godaddy {
 
-OrdersService::OrdersService(ApiClient& client) : BaseService(client, "https://api.ote-godaddy.com") {}
+OrdersService::OrdersService(ApiClient& client) : BaseService(client, "orders") {}
 
 Result OrdersService::list(const Value& xAppKey, const Value& periodStart, const Value& periodEnd, const Value& domain, const Value& productGroupId, const Value& paymentProfileId, const Value& parentOrderId, const Value& offset, const Value& limit, const Value& sort, const Value& xShopperId) {
     return call(

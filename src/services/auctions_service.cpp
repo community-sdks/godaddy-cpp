@@ -2,7 +2,7 @@
 
 namespace godaddy {
 
-AuctionsService::AuctionsService(ApiClient& client) : BaseService(client, "https://api.ote-godaddy.com") {}
+AuctionsService::AuctionsService(ApiClient& client) : BaseService(client, "auctions") {}
 
 Result AuctionsService::placeBids(const Value& customerId, const Value& requestBody) {
     return call(
