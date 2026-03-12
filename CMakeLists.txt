@@ -1,4 +1,9 @@
 cmake_minimum_required(VERSION 3.20)
+
+if(NOT DEFINED CMAKE_TOOLCHAIN_FILE AND DEFINED ENV{VCPKG_ROOT})
+    set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" CACHE STRING "vcpkg toolchain file")
+endif()
+
 project(godaddy_cpp LANGUAGES CXX)
 
 include(CTest)

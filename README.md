@@ -4,6 +4,15 @@ A community-maintained C++ SDK for the provided GoDaddy OpenAPI specs.
 
 ## Build
 
+Using vcpkg manifest mode (recommended):
+
+```bash
+cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE="$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake"
+cmake --build build
+```
+
+Or plain CMake:
+
 ```bash
 cmake -S . -B build
 cmake --build build
